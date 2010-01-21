@@ -1,0 +1,6 @@
+/* Artificial Inteligence to Radio */
+
+message AIToRadio {
+	required float nada = 1;
+}
+
