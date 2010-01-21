@@ -1,0 +1,5 @@
+/* GUI to Artificial Inteligence */
+
+message GUIToAI {
+	required float nada = 1;
+}

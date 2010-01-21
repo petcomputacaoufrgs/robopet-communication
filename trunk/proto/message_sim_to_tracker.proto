@@ -1,0 +1,19 @@
+/* Simulator to Tracker */
+
+message BallSim {
+	required uint32 x = 1;
+	required uint32 y = 2;
+}
+
+message RobotSim {
+	required uint32 x = 1;
+	required uint32 y = 2;
+	required double theta = 3;
+}
+
+message SimToTracker {
+	required BallSim ball = 1;
+	repeated RobotSim robots_blue = 2;
+	repeated RobotSim robots_yellow = 3;
+}
+

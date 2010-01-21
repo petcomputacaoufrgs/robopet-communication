@@ -1,0 +1,19 @@
+/* Tracker to Artificial Inteligence */
+
+message BallTracker {
+	required uint32 x = 1;
+	required uint32 y = 2;
+}
+
+message RobotTracker {
+	required uint32 x = 1;
+	required uint32 y = 2;
+	required double theta = 3;
+}
+
+message TrackerToAI {
+	required BallTracker ball = 1;
+	repeated RobotTracker robots_blue = 2;
+	repeated RobotTracker robots_yellow = 3;
+}
+
