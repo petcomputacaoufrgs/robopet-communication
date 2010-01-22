@@ -16,7 +16,8 @@ PROTOBUF_FILES_H = message_gui_to_ai.pb.h \
 				messages_robocup_ssl_wrapper.pb.h \
 				message_tracker_to_ai.pb.h \
 				message_sim_to_tracker.pb.h \
-				message_ai_to_sim.pb.h
+				message_ai_to_sim.pb.h \
+				message_ai_to_tracker.pb.h
 
 PROTOBUF_FILES_O = $(PROTOBUF_FILES_H:.h=.o)
 PROTOBUF_FILES_CC = $(PROTOBUF_FILES_H:.h=.cc)
@@ -40,6 +41,6 @@ ssl_client.o: $(SOCKET_PATH)/ssl_client.cpp $(SOCKET_PATH)/ssl_client.h
 	$(CC) $(INC_PATHS) -c -o $@ $< $(CFLAGS) $(LFLAGS)
 
 ### PROTOBUF ###
-%.pb.o: $(PACKETS_PATH)/%.pb.cc $(PACKETS_PATH)/%.pb.h $(PROTO_PATH)/%.proto
+%.pb.o: $(PROTO_PATH)/%.proto
 	protoc -I=$(PROTO_PATH) --cpp_out=$(PACKETS_PATH) $(PROTO_PATH)/$*.proto
-	$(CC) $(INC_PATHS) -c $< $(CFLAGS) $(LFLAGS)
+	$(CC) $(INC_PATHS) -c $(PACKETS_PATH)/$*.pb.cc $(CFLAGS) $(LFLAGS)
