@@ -18,7 +18,7 @@ const ::google::protobuf::internal::GeneratedMessageReflection*
 void protobuf_BuildDesc_messages_5frobocup_5fssl_5fwrapper_2eproto_AssignGlobalDescriptors(const ::google::protobuf::FileDescriptor* file) {
   SSL_WrapperPacket_descriptor_ = file->message_type(0);
   SSL_WrapperPacket::default_instance_ = new SSL_WrapperPacket();
-  static const int SSL_WrapperPacket_offsets_[9] = {
+  static const int SSL_WrapperPacket_offsets_[10] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(SSL_WrapperPacket, detection_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(SSL_WrapperPacket, geometry_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(SSL_WrapperPacket, refbox_),
@@ -28,6 +28,7 @@ void protobuf_BuildDesc_messages_5frobocup_5fssl_5fwrapper_2eproto_AssignGlobalD
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(SSL_WrapperPacket, guitoai_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(SSL_WrapperPacket, simtotracker_),
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(SSL_WrapperPacket, trackertoai_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(SSL_WrapperPacket, aitotracker_),
   };
   SSL_WrapperPacket_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -61,6 +62,7 @@ void protobuf_BuildDesc_messages_5frobocup_5fssl_5fwrapper_2eproto() {
   ::protobuf_BuildDesc_messages_5frobocup_5fssl_5fgeometry_2eproto();
   ::protobuf_BuildDesc_messages_5frobocup_5fssl_5frefbox_5flog_2eproto();
   ::protobuf_BuildDesc_message_5ftracker_5fto_5fai_2eproto();
+  ::protobuf_BuildDesc_message_5fai_5fto_5ftracker_2eproto();
   pool->InternalBuildGeneratedFile(
     "\n\"messages_robocup_ssl_wrapper.proto\032\027me"
     "ssage_ai_to_gui.proto\032\031message_ai_to_rad"
@@ -69,15 +71,17 @@ void protobuf_BuildDesc_messages_5frobocup_5fssl_5fwrapper_2eproto() {
     "er.proto\032$messages_robocup_ssl_detection"
     ".proto\032#messages_robocup_ssl_geometry.pr"
     "oto\032%messages_robocup_ssl_refbox_log.pro"
-    "to\032\033message_tracker_to_ai.proto\"\265\002\n\021SSL_"
-    "WrapperPacket\022&\n\tdetection\030\001 \001(\0132\023.SSL_D"
-    "etectionFrame\022#\n\010geometry\030\002 \001(\0132\021.SSL_Ge"
-    "ometryData\022\033\n\006refbox\030\003 \001(\0132\013.Refbox_Log\022"
-    "\031\n\007aiToGui\030\004 \001(\0132\010.AIToGUI\022\035\n\taiToRadio\030"
-    "\005 \001(\0132\n.AIToRadio\022\031\n\007aiToSim\030\006 \001(\0132\010.AIT"
-    "oSim\022\031\n\007guiToAi\030\007 \001(\0132\010.GUIToAI\022#\n\014simTo"
-    "Tracker\030\010 \001(\0132\r.SimToTracker\022!\n\013trackerT"
-    "oAi\030\t \001(\0132\014.TrackerToAI", 623,
+    "to\032\033message_tracker_to_ai.proto\032\033message"
+    "_ai_to_tracker.proto\"\330\002\n\021SSL_WrapperPack"
+    "et\022&\n\tdetection\030\001 \001(\0132\023.SSL_DetectionFra"
+    "me\022#\n\010geometry\030\002 \001(\0132\021.SSL_GeometryData\022"
+    "\033\n\006refbox\030\003 \001(\0132\013.Refbox_Log\022\031\n\007aiToGui\030"
+    "\004 \001(\0132\010.AIToGUI\022\035\n\taiToRadio\030\005 \001(\0132\n.AIT"
+    "oRadio\022\031\n\007aiToSim\030\006 \001(\0132\010.AIToSim\022\031\n\007gui"
+    "ToAi\030\007 \001(\0132\010.GUIToAI\022#\n\014simToTracker\030\010 \001"
+    "(\0132\r.SimToTracker\022!\n\013trackerToAi\030\t \001(\0132\014"
+    ".TrackerToAI\022!\n\013aiToTracker\030\n \001(\0132\014.AITo"
+    "Tracker", 687,
   &protobuf_BuildDesc_messages_5frobocup_5fssl_5fwrapper_2eproto_AssignGlobalDescriptors);
 }
 
@@ -100,6 +104,7 @@ struct StaticDescriptorInitializer_messages_5frobocup_5fssl_5fwrapper_2eproto {
 
 
 
+
 SSL_WrapperPacket::SSL_WrapperPacket()
   : ::google::protobuf::Message(),
     _cached_size_(0),
@@ -111,7 +116,8 @@ SSL_WrapperPacket::SSL_WrapperPacket()
     aitosim_(NULL),
     guitoai_(NULL),
     simtotracker_(NULL),
-    trackertoai_(NULL) {
+    trackertoai_(NULL),
+    aitotracker_(NULL) {
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -124,6 +130,7 @@ void SSL_WrapperPacket::InitAsDefaultInstance() {  detection_ = const_cast< ::SS
   guitoai_ = const_cast< ::GUIToAI*>(&::GUIToAI::default_instance());
   simtotracker_ = const_cast< ::SimToTracker*>(&::SimToTracker::default_instance());
   trackertoai_ = const_cast< ::TrackerToAI*>(&::TrackerToAI::default_instance());
+  aitotracker_ = const_cast< ::AIToTracker*>(&::AIToTracker::default_instance());
 }
 
 SSL_WrapperPacket::SSL_WrapperPacket(const SSL_WrapperPacket& from)
@@ -137,7 +144,8 @@ SSL_WrapperPacket::SSL_WrapperPacket(const SSL_WrapperPacket& from)
     aitosim_(NULL),
     guitoai_(NULL),
     simtotracker_(NULL),
-    trackertoai_(NULL) {
+    trackertoai_(NULL),
+    aitotracker_(NULL) {
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   MergeFrom(from);
 }
@@ -153,6 +161,7 @@ SSL_WrapperPacket::~SSL_WrapperPacket() {
     delete guitoai_;
     delete simtotracker_;
     delete trackertoai_;
+    delete aitotracker_;
   }
 }
 

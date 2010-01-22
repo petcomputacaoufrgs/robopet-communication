@@ -9,18 +9,19 @@ import "messages_robocup_ssl_detection.proto";
 import "messages_robocup_ssl_geometry.proto";
 import "messages_robocup_ssl_refbox_log.proto";
 import "message_tracker_to_ai.proto";
+import "message_ai_to_tracker.proto";
 
 message SSL_WrapperPacket {
   /* Should be the same of SSL */
   optional SSL_DetectionFrame detection = 1;
   optional SSL_GeometryData geometry = 2;
   optional Refbox_Log refbox = 3;
-  
+
   optional AIToGUI aiToGui = 4;
   optional AIToRadio aiToRadio = 5;
   optional AIToSim aiToSim = 6;
   optional GUIToAI guiToAi = 7;
   optional SimToTracker simToTracker = 8;
   optional TrackerToAI trackerToAi = 9;
+  optional AIToTracker aiToTracker = 10;
 }
-

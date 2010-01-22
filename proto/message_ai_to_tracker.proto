@@ -1,0 +1,5 @@
+/* Artificial Inteligence to Tracker */
+
+message AIToTracker {
+	required float nada = 1;
+}

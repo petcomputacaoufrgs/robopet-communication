@@ -4,7 +4,8 @@ enum {
 	PORT_AI_TO_SIM,
 	PORT_GUI_TO_AI,
 	PORT_SIM_TO_TRACKER,
-	PORT_TRACKER_TO_AI
+	PORT_TRACKER_TO_AI,
+	PORT_AI_TO_TRACKER,
 };
 
 #define IP_AI_TO_GUI "localhost"
@@ -13,6 +14,7 @@ enum {
 #define IP_GUI_TO_AI "localhost"
 #define IP_SIM_TO_TRACKER "localhost"
 #define IP_TRACKER_TO_AI "localhost"
+#define IP_AI_TO_TRACKER "localhost"
 
 //========================================================================
 //  This software is free: you can redistribute it and/or modify

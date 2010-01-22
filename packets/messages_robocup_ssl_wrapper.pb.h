@@ -30,6 +30,7 @@
 #include "messages_robocup_ssl_geometry.pb.h"
 #include "messages_robocup_ssl_refbox_log.pb.h"
 #include "message_tracker_to_ai.pb.h"
+#include "message_ai_to_tracker.pb.h"
 
 // Internal implementation detail -- do not call these.
 void  protobuf_BuildDesc_messages_5frobocup_5fssl_5fwrapper_2eproto();
@@ -133,6 +134,12 @@ class SSL_WrapperPacket : public ::google::protobuf::Message {
   inline const ::TrackerToAI& trackertoai() const;
   inline ::TrackerToAI* mutable_trackertoai();
   
+  // optional .AIToTracker aiToTracker = 10;
+  inline bool has_aitotracker() const;
+  inline void clear_aitotracker();
+  inline const ::AIToTracker& aitotracker() const;
+  inline ::AIToTracker* mutable_aitotracker();
+  
  private:
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   mutable int _cached_size_;
@@ -146,9 +153,10 @@ class SSL_WrapperPacket : public ::google::protobuf::Message {
   ::GUIToAI* guitoai_;
   ::SimToTracker* simtotracker_;
   ::TrackerToAI* trackertoai_;
+  ::AIToTracker* aitotracker_;
   friend void protobuf_BuildDesc_messages_5frobocup_5fssl_5fwrapper_2eproto_AssignGlobalDescriptors(
       const ::google::protobuf::FileDescriptor* file);
-  ::google::protobuf::uint32 _has_bits_[(9 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(10 + 31) / 32];
   
   // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
   inline bool _has_bit(int index) const {
@@ -325,6 +333,23 @@ inline ::TrackerToAI* SSL_WrapperPacket::mutable_trackertoai() {
   _set_bit(8);
   if (trackertoai_ == NULL) trackertoai_ = new ::TrackerToAI;
   return trackertoai_;
+}
+
+// optional .AIToTracker aiToTracker = 10;
+inline bool SSL_WrapperPacket::has_aitotracker() const {
+  return _has_bit(9);
+}
+inline void SSL_WrapperPacket::clear_aitotracker() {
+  if (aitotracker_ != NULL) aitotracker_->::AIToTracker::Clear();
+  _clear_bit(9);
+}
+inline const ::AIToTracker& SSL_WrapperPacket::aitotracker() const {
+  return aitotracker_ != NULL ? *aitotracker_ : *default_instance_->aitotracker_;
+}
+inline ::AIToTracker* SSL_WrapperPacket::mutable_aitotracker() {
+  _set_bit(9);
+  if (aitotracker_ == NULL) aitotracker_ = new ::AIToTracker;
+  return aitotracker_;
 }
 
 #endif  // PROTOBUF_messages_5frobocup_5fssl_5fwrapper_2eproto__INCLUDED

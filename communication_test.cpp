@@ -141,6 +141,10 @@ void sslClient(int port=8100, char* hostname="localhost")
 			{
 				printf("AI-To-Sim!\n");
 			}
+			if (packet.has_aitotracker())
+			{
+				printf("AI-To-Tracker!\n");
+			}
 			if (packet.has_simtotracker())
 			{
 				printf("Sim-To-Tracker!\n");
