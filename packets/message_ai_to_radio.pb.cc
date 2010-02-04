@@ -8,6 +8,9 @@
 
 namespace {
 
+const ::google::protobuf::Descriptor* RadioRobot_descriptor_ = NULL;
+const ::google::protobuf::internal::GeneratedMessageReflection*
+  RadioRobot_reflection_ = NULL;
 const ::google::protobuf::Descriptor* AIToRadio_descriptor_ = NULL;
 const ::google::protobuf::internal::GeneratedMessageReflection*
   AIToRadio_reflection_ = NULL;
@@ -16,10 +19,31 @@ const ::google::protobuf::internal::GeneratedMessageReflection*
 
 
 void protobuf_BuildDesc_message_5fai_5fto_5fradio_2eproto_AssignGlobalDescriptors(const ::google::protobuf::FileDescriptor* file) {
-  AIToRadio_descriptor_ = file->message_type(0);
+  RadioRobot_descriptor_ = file->message_type(0);
+  RadioRobot::default_instance_ = new RadioRobot();
+  static const int RadioRobot_offsets_[5] = {
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RadioRobot, displacement_x_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RadioRobot, displacement_y_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RadioRobot, displacement_theta_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RadioRobot, drible_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RadioRobot, kick_),
+  };
+  RadioRobot_reflection_ =
+    new ::google::protobuf::internal::GeneratedMessageReflection(
+      RadioRobot_descriptor_,
+      RadioRobot::default_instance_,
+      RadioRobot_offsets_,
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RadioRobot, _has_bits_[0]),
+      GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(RadioRobot, _unknown_fields_),
+      -1,
+      ::google::protobuf::DescriptorPool::generated_pool(),
+      sizeof(RadioRobot));
+  ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
+    RadioRobot_descriptor_, RadioRobot::default_instance_);
+  AIToRadio_descriptor_ = file->message_type(1);
   AIToRadio::default_instance_ = new AIToRadio();
   static const int AIToRadio_offsets_[1] = {
-    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(AIToRadio, nada_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(AIToRadio, robots_),
   };
   AIToRadio_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -33,6 +57,7 @@ void protobuf_BuildDesc_message_5fai_5fto_5fradio_2eproto_AssignGlobalDescriptor
       sizeof(AIToRadio));
   ::google::protobuf::MessageFactory::InternalRegisterGeneratedMessage(
     AIToRadio_descriptor_, AIToRadio::default_instance_);
+  RadioRobot::default_instance_->InitAsDefaultInstance();
   AIToRadio::default_instance_->InitAsDefaultInstance();
 }
 
@@ -45,8 +70,11 @@ void protobuf_BuildDesc_message_5fai_5fto_5fradio_2eproto() {
     ::google::protobuf::DescriptorPool::internal_generated_pool();
 
   pool->InternalBuildGeneratedFile(
-    "\n\031message_ai_to_radio.proto\"\031\n\tAIToRadio"
-    "\022\014\n\004nada\030\001 \002(\002", 54,
+    "\n\031message_ai_to_radio.proto\"v\n\nRadioRobo"
+    "t\022\026\n\016displacement_x\030\001 \002(\r\022\026\n\016displacemen"
+    "t_y\030\002 \002(\r\022\032\n\022displacement_theta\030\003 \002(\r\022\016\n"
+    "\006drible\030\004 \002(\r\022\014\n\004kick\030\005 \002(\r\"(\n\tAIToRadio"
+    "\022\033\n\006robots\030\001 \003(\0132\013.RadioRobot", 189,
   &protobuf_BuildDesc_message_5fai_5fto_5fradio_2eproto_AssignGlobalDescriptors);
 }
 
@@ -61,10 +89,71 @@ struct StaticDescriptorInitializer_message_5fai_5fto_5fradio_2eproto {
 // ===================================================================
 
 
-AIToRadio::AIToRadio()
+
+
+
+
+RadioRobot::RadioRobot()
   : ::google::protobuf::Message(),
     _cached_size_(0),
-    nada_(0) {
+    displacement_x_(0u),
+    displacement_y_(0u),
+    displacement_theta_(0u),
+    drible_(0u),
+    kick_(0u) {
+  ::memset(_has_bits_, 0, sizeof(_has_bits_));
+}
+
+void RadioRobot::InitAsDefaultInstance() {}
+
+RadioRobot::RadioRobot(const RadioRobot& from)
+  : ::google::protobuf::Message(),
+    _cached_size_(0),
+    displacement_x_(0u),
+    displacement_y_(0u),
+    displacement_theta_(0u),
+    drible_(0u),
+    kick_(0u) {
+  ::memset(_has_bits_, 0, sizeof(_has_bits_));
+  MergeFrom(from);
+}
+
+RadioRobot::~RadioRobot() {
+  if (this != default_instance_) {
+  }
+}
+
+const ::google::protobuf::Descriptor* RadioRobot::descriptor() {
+  if (RadioRobot_descriptor_ == NULL) protobuf_BuildDesc_message_5fai_5fto_5fradio_2eproto();
+  return RadioRobot_descriptor_;
+}
+
+const RadioRobot& RadioRobot::default_instance() {
+  if (default_instance_ == NULL) protobuf_BuildDesc_message_5fai_5fto_5fradio_2eproto();
+  return *default_instance_;
+}
+
+RadioRobot* RadioRobot::default_instance_ = NULL;
+
+RadioRobot* RadioRobot::New() const {
+  return new RadioRobot;
+}
+
+const ::google::protobuf::Descriptor* RadioRobot::GetDescriptor() const {
+  return descriptor();
+}
+
+const ::google::protobuf::Reflection* RadioRobot::GetReflection() const {
+  if (RadioRobot_reflection_ == NULL) protobuf_BuildDesc_message_5fai_5fto_5fradio_2eproto();
+  return RadioRobot_reflection_;
+}
+
+// ===================================================================
+
+
+AIToRadio::AIToRadio()
+  : ::google::protobuf::Message(),
+    _cached_size_(0) {
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -72,8 +161,7 @@ void AIToRadio::InitAsDefaultInstance() {}
 
 AIToRadio::AIToRadio(const AIToRadio& from)
   : ::google::protobuf::Message(),
-    _cached_size_(0),
-    nada_(0) {
+    _cached_size_(0) {
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   MergeFrom(from);
 }

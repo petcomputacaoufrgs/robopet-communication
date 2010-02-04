@@ -10,6 +10,7 @@ import "messages_robocup_ssl_geometry.proto";
 import "messages_robocup_ssl_refbox_log.proto";
 import "message_tracker_to_ai.proto";
 import "message_ai_to_tracker.proto";
+import "message_radio_to_tracker.proto";
 
 message SSL_WrapperPacket {
   /* Should be the same of SSL */
@@ -24,4 +25,5 @@ message SSL_WrapperPacket {
   optional SimToTracker simToTracker = 8;
   optional TrackerToAI trackerToAi = 9;
   optional AIToTracker aiToTracker = 10;
+  optional RadioToTracker radioToTracker = 11;
 }

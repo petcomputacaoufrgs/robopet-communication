@@ -27,9 +27,108 @@ void  protobuf_BuildDesc_message_5fai_5fto_5fradio_2eproto();
 void protobuf_BuildDesc_message_5fai_5fto_5fradio_2eproto_AssignGlobalDescriptors(
     ::google::protobuf::FileDescriptor* file);
 
+class RadioRobot;
 class AIToRadio;
 
 // ===================================================================
+
+class RadioRobot : public ::google::protobuf::Message {
+ public:
+  RadioRobot();
+  virtual ~RadioRobot();
+  
+  RadioRobot(const RadioRobot& from);
+  
+  inline RadioRobot& operator=(const RadioRobot& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const {
+    return _unknown_fields_;
+  }
+  
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields() {
+    return &_unknown_fields_;
+  }
+  
+  static const ::google::protobuf::Descriptor* descriptor();
+  static const RadioRobot& default_instance();
+  void Swap(RadioRobot* other);
+  
+  // implements Message ----------------------------------------------
+  
+  RadioRobot* New() const;
+  int GetCachedSize() const { return _cached_size_; }
+  private:
+  void SetCachedSize(int size) const { _cached_size_ = size; }
+  public:
+  
+  const ::google::protobuf::Descriptor* GetDescriptor() const;
+  const ::google::protobuf::Reflection* GetReflection() const;
+  
+  // nested types ----------------------------------------------------
+  
+  // accessors -------------------------------------------------------
+  
+  // required uint32 displacement_x = 1;
+  inline bool has_displacement_x() const;
+  inline void clear_displacement_x();
+  inline ::google::protobuf::uint32 displacement_x() const;
+  inline void set_displacement_x(::google::protobuf::uint32 value);
+  
+  // required uint32 displacement_y = 2;
+  inline bool has_displacement_y() const;
+  inline void clear_displacement_y();
+  inline ::google::protobuf::uint32 displacement_y() const;
+  inline void set_displacement_y(::google::protobuf::uint32 value);
+  
+  // required uint32 displacement_theta = 3;
+  inline bool has_displacement_theta() const;
+  inline void clear_displacement_theta();
+  inline ::google::protobuf::uint32 displacement_theta() const;
+  inline void set_displacement_theta(::google::protobuf::uint32 value);
+  
+  // required uint32 drible = 4;
+  inline bool has_drible() const;
+  inline void clear_drible();
+  inline ::google::protobuf::uint32 drible() const;
+  inline void set_drible(::google::protobuf::uint32 value);
+  
+  // required uint32 kick = 5;
+  inline bool has_kick() const;
+  inline void clear_kick();
+  inline ::google::protobuf::uint32 kick() const;
+  inline void set_kick(::google::protobuf::uint32 value);
+  
+ private:
+  ::google::protobuf::UnknownFieldSet _unknown_fields_;
+  mutable int _cached_size_;
+  
+  ::google::protobuf::uint32 displacement_x_;
+  ::google::protobuf::uint32 displacement_y_;
+  ::google::protobuf::uint32 displacement_theta_;
+  ::google::protobuf::uint32 drible_;
+  ::google::protobuf::uint32 kick_;
+  friend void protobuf_BuildDesc_message_5fai_5fto_5fradio_2eproto_AssignGlobalDescriptors(
+      const ::google::protobuf::FileDescriptor* file);
+  ::google::protobuf::uint32 _has_bits_[(5 + 31) / 32];
+  
+  // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
+  inline bool _has_bit(int index) const {
+    return (_has_bits_[index / 32] & (1u << (index % 32))) != 0;
+  }
+  inline void _set_bit(int index) {
+    _has_bits_[index / 32] |= (1u << (index % 32));
+  }
+  inline void _clear_bit(int index) {
+    _has_bits_[index / 32] &= ~(1u << (index % 32));
+  }
+  
+  void InitAsDefaultInstance();
+  static RadioRobot* default_instance_;
+};
+// -------------------------------------------------------------------
 
 class AIToRadio : public ::google::protobuf::Message {
  public:
@@ -70,17 +169,20 @@ class AIToRadio : public ::google::protobuf::Message {
   
   // accessors -------------------------------------------------------
   
-  // required float nada = 1;
-  inline bool has_nada() const;
-  inline void clear_nada();
-  inline float nada() const;
-  inline void set_nada(float value);
+  // repeated .RadioRobot robots = 1;
+  inline int robots_size() const;
+  inline void clear_robots();
+  inline const ::google::protobuf::RepeatedPtrField< ::RadioRobot >& robots() const;
+  inline ::google::protobuf::RepeatedPtrField< ::RadioRobot >* mutable_robots();
+  inline const ::RadioRobot& robots(int index) const;
+  inline ::RadioRobot* mutable_robots(int index);
+  inline ::RadioRobot* add_robots();
   
  private:
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   mutable int _cached_size_;
   
-  float nada_;
+  ::google::protobuf::RepeatedPtrField< ::RadioRobot > robots_;
   friend void protobuf_BuildDesc_message_5fai_5fto_5fradio_2eproto_AssignGlobalDescriptors(
       const ::google::protobuf::FileDescriptor* file);
   ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
@@ -107,22 +209,115 @@ class AIToRadio : public ::google::protobuf::Message {
 
 // ===================================================================
 
-// AIToRadio
+// RadioRobot
 
-// required float nada = 1;
-inline bool AIToRadio::has_nada() const {
+// required uint32 displacement_x = 1;
+inline bool RadioRobot::has_displacement_x() const {
   return _has_bit(0);
 }
-inline void AIToRadio::clear_nada() {
-  nada_ = 0;
+inline void RadioRobot::clear_displacement_x() {
+  displacement_x_ = 0u;
   _clear_bit(0);
 }
-inline float AIToRadio::nada() const {
-  return nada_;
+inline ::google::protobuf::uint32 RadioRobot::displacement_x() const {
+  return displacement_x_;
 }
-inline void AIToRadio::set_nada(float value) {
+inline void RadioRobot::set_displacement_x(::google::protobuf::uint32 value) {
   _set_bit(0);
-  nada_ = value;
+  displacement_x_ = value;
+}
+
+// required uint32 displacement_y = 2;
+inline bool RadioRobot::has_displacement_y() const {
+  return _has_bit(1);
+}
+inline void RadioRobot::clear_displacement_y() {
+  displacement_y_ = 0u;
+  _clear_bit(1);
+}
+inline ::google::protobuf::uint32 RadioRobot::displacement_y() const {
+  return displacement_y_;
+}
+inline void RadioRobot::set_displacement_y(::google::protobuf::uint32 value) {
+  _set_bit(1);
+  displacement_y_ = value;
+}
+
+// required uint32 displacement_theta = 3;
+inline bool RadioRobot::has_displacement_theta() const {
+  return _has_bit(2);
+}
+inline void RadioRobot::clear_displacement_theta() {
+  displacement_theta_ = 0u;
+  _clear_bit(2);
+}
+inline ::google::protobuf::uint32 RadioRobot::displacement_theta() const {
+  return displacement_theta_;
+}
+inline void RadioRobot::set_displacement_theta(::google::protobuf::uint32 value) {
+  _set_bit(2);
+  displacement_theta_ = value;
+}
+
+// required uint32 drible = 4;
+inline bool RadioRobot::has_drible() const {
+  return _has_bit(3);
+}
+inline void RadioRobot::clear_drible() {
+  drible_ = 0u;
+  _clear_bit(3);
+}
+inline ::google::protobuf::uint32 RadioRobot::drible() const {
+  return drible_;
+}
+inline void RadioRobot::set_drible(::google::protobuf::uint32 value) {
+  _set_bit(3);
+  drible_ = value;
+}
+
+// required uint32 kick = 5;
+inline bool RadioRobot::has_kick() const {
+  return _has_bit(4);
+}
+inline void RadioRobot::clear_kick() {
+  kick_ = 0u;
+  _clear_bit(4);
+}
+inline ::google::protobuf::uint32 RadioRobot::kick() const {
+  return kick_;
+}
+inline void RadioRobot::set_kick(::google::protobuf::uint32 value) {
+  _set_bit(4);
+  kick_ = value;
+}
+
+// -------------------------------------------------------------------
+
+// AIToRadio
+
+// repeated .RadioRobot robots = 1;
+inline int AIToRadio::robots_size() const {
+  return robots_.size();
+}
+inline void AIToRadio::clear_robots() {
+  robots_.Clear();
+}
+inline const ::google::protobuf::RepeatedPtrField< ::RadioRobot >&
+AIToRadio::robots() const {
+  return robots_;
+}
+inline ::google::protobuf::RepeatedPtrField< ::RadioRobot >*
+AIToRadio::mutable_robots() {
+  return &robots_;
+}
+inline const ::RadioRobot& AIToRadio::robots(int index) const {
+  return robots_.Get(index);
+}
+inline ::RadioRobot* AIToRadio::mutable_robots(int index) {
+  return robots_.Mutable(index);
+}
+inline ::RadioRobot* AIToRadio::add_robots() {
+  return robots_.Add();
 }
 
 #endif  // PROTOBUF_message_5fai_5fto_5fradio_2eproto__INCLUDED

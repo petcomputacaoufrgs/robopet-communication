@@ -270,14 +270,21 @@ class AIToSim : public ::google::protobuf::Message {
   inline ::RobotAI* mutable_robots(int index);
   inline ::RobotAI* add_robots();
   
+  // required uint32 team = 2;
+  inline bool has_team() const;
+  inline void clear_team();
+  inline ::google::protobuf::uint32 team() const;
+  inline void set_team(::google::protobuf::uint32 value);
+  
  private:
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   mutable int _cached_size_;
   
   ::google::protobuf::RepeatedPtrField< ::RobotAI > robots_;
+  ::google::protobuf::uint32 team_;
   friend void protobuf_BuildDesc_message_5fai_5fto_5fsim_2eproto_AssignGlobalDescriptors(
       const ::google::protobuf::FileDescriptor* file);
-  ::google::protobuf::uint32 _has_bits_[(1 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(2 + 31) / 32];
   
   // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
   inline bool _has_bit(int index) const {
@@ -479,6 +486,22 @@ inline ::RobotAI* AIToSim::mutable_robots(int index) {
 }
 inline ::RobotAI* AIToSim::add_robots() {
   return robots_.Add();
+}
+
+// required uint32 team = 2;
+inline bool AIToSim::has_team() const {
+  return _has_bit(1);
+}
+inline void AIToSim::clear_team() {
+  team_ = 0u;
+  _clear_bit(1);
+}
+inline ::google::protobuf::uint32 AIToSim::team() const {
+  return team_;
+}
+inline void AIToSim::set_team(::google::protobuf::uint32 value) {
+  _set_bit(1);
+  team_ = value;
 }
 
 #endif  // PROTOBUF_message_5fai_5fto_5fsim_2eproto__INCLUDED
