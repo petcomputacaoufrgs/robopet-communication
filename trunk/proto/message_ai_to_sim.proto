@@ -13,9 +13,9 @@ message RobotAI {
 	required KickAI kick = 7;
 	optional uint32 future_x = 8;
 	optional uint32 future_y = 9;
-	
 }
 
 message AIToSim {
 	repeated RobotAI robots = 1;
+	required uint32 team = 2; //0 or 1
 }

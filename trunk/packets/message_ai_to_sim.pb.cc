@@ -65,8 +65,9 @@ void protobuf_BuildDesc_message_5fai_5fto_5fsim_2eproto_AssignGlobalDescriptors(
     RobotAI_descriptor_, RobotAI::default_instance_);
   AIToSim_descriptor_ = file->message_type(2);
   AIToSim::default_instance_ = new AIToSim();
-  static const int AIToSim_offsets_[1] = {
+  static const int AIToSim_offsets_[2] = {
     GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(AIToSim, robots_),
+    GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(AIToSim, team_),
   };
   AIToSim_reflection_ =
     new ::google::protobuf::internal::GeneratedMessageReflection(
@@ -99,8 +100,8 @@ void protobuf_BuildDesc_message_5fai_5fto_5fsim_2eproto() {
     "\007RobotAI\022\t\n\001r\030\003 \002(\001\022\r\n\005theta\030\004 \002(\001\022\r\n\005om"
     "ega\030\005 \002(\001\022\032\n\022movement_intensity\030\006 \002(\001\022\025\n"
     "\004kick\030\007 \002(\0132\007.KickAI\022\020\n\010future_x\030\010 \001(\r\022\020"
-    "\n\010future_y\030\t \001(\r\"#\n\007AIToSim\022\030\n\006robots\030\001 "
-    "\003(\0132\010.RobotAI", 253,
+    "\n\010future_y\030\t \001(\r\"1\n\007AIToSim\022\030\n\006robots\030\001 "
+    "\003(\0132\010.RobotAI\022\014\n\004team\030\002 \002(\r", 267,
   &protobuf_BuildDesc_message_5fai_5fto_5fsim_2eproto_AssignGlobalDescriptors);
 }
 
@@ -238,9 +239,11 @@ const ::google::protobuf::Reflection* RobotAI::GetReflection() const {
 // ===================================================================
 
 
+
 AIToSim::AIToSim()
   : ::google::protobuf::Message(),
-    _cached_size_(0) {
+    _cached_size_(0),
+    team_(0u) {
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
 }
 
@@ -248,7 +251,8 @@ void AIToSim::InitAsDefaultInstance() {}
 
 AIToSim::AIToSim(const AIToSim& from)
   : ::google::protobuf::Message(),
-    _cached_size_(0) {
+    _cached_size_(0),
+    team_(0u) {
   ::memset(_has_bits_, 0, sizeof(_has_bits_));
   MergeFrom(from);
 }

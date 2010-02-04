@@ -31,6 +31,7 @@
 #include "messages_robocup_ssl_refbox_log.pb.h"
 #include "message_tracker_to_ai.pb.h"
 #include "message_ai_to_tracker.pb.h"
+#include "message_radio_to_tracker.pb.h"
 
 // Internal implementation detail -- do not call these.
 void  protobuf_BuildDesc_messages_5frobocup_5fssl_5fwrapper_2eproto();
@@ -140,6 +141,12 @@ class SSL_WrapperPacket : public ::google::protobuf::Message {
   inline const ::AIToTracker& aitotracker() const;
   inline ::AIToTracker* mutable_aitotracker();
   
+  // optional .RadioToTracker radioToTracker = 11;
+  inline bool has_radiototracker() const;
+  inline void clear_radiototracker();
+  inline const ::RadioToTracker& radiototracker() const;
+  inline ::RadioToTracker* mutable_radiototracker();
+  
  private:
   ::google::protobuf::UnknownFieldSet _unknown_fields_;
   mutable int _cached_size_;
@@ -154,9 +161,10 @@ class SSL_WrapperPacket : public ::google::protobuf::Message {
   ::SimToTracker* simtotracker_;
   ::TrackerToAI* trackertoai_;
   ::AIToTracker* aitotracker_;
+  ::RadioToTracker* radiototracker_;
   friend void protobuf_BuildDesc_messages_5frobocup_5fssl_5fwrapper_2eproto_AssignGlobalDescriptors(
       const ::google::protobuf::FileDescriptor* file);
-  ::google::protobuf::uint32 _has_bits_[(10 + 31) / 32];
+  ::google::protobuf::uint32 _has_bits_[(11 + 31) / 32];
   
   // WHY DOES & HAVE LOWER PRECEDENCE THAN != !?
   inline bool _has_bit(int index) const {
@@ -350,6 +358,23 @@ inline ::AIToTracker* SSL_WrapperPacket::mutable_aitotracker() {
   _set_bit(9);
   if (aitotracker_ == NULL) aitotracker_ = new ::AIToTracker;
   return aitotracker_;
+}
+
+// optional .RadioToTracker radioToTracker = 11;
+inline bool SSL_WrapperPacket::has_radiototracker() const {
+  return _has_bit(10);
+}
+inline void SSL_WrapperPacket::clear_radiototracker() {
+  if (radiototracker_ != NULL) radiototracker_->::RadioToTracker::Clear();
+  _clear_bit(10);
+}
+inline const ::RadioToTracker& SSL_WrapperPacket::radiototracker() const {
+  return radiototracker_ != NULL ? *radiototracker_ : *default_instance_->radiototracker_;
+}
+inline ::RadioToTracker* SSL_WrapperPacket::mutable_radiototracker() {
+  _set_bit(10);
+  if (radiototracker_ == NULL) radiototracker_ = new ::RadioToTracker;
+  return radiototracker_;
 }
 
 #endif  // PROTOBUF_messages_5frobocup_5fssl_5fwrapper_2eproto__INCLUDED

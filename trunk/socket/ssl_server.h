@@ -6,6 +6,7 @@ enum {
 	PORT_SIM_TO_TRACKER,
 	PORT_TRACKER_TO_AI,
 	PORT_AI_TO_TRACKER,
+	PORT_RADIO_TO_TRACKER
 };
 
 #define IP_AI_TO_GUI "localhost"
@@ -15,6 +16,13 @@ enum {
 #define IP_SIM_TO_TRACKER "localhost"
 #define IP_TRACKER_TO_AI "localhost"
 #define IP_AI_TO_TRACKER "localhost"
+#define IP_RADIO_TO_TRACKER "localhost"
+
+enum {
+	TEAM_BLUE,
+	TEAM_YELLOW,
+	TEAM_TOTAL
+};
 
 //========================================================================
 //  This software is free: you can redistribute it and/or modify

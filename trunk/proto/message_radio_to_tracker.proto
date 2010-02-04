@@ -1,0 +1,5 @@
+/* Radio to Tracker */
+
+message RadioToTracker {
+	required float nada = 1;
+}
