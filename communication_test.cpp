@@ -97,6 +97,7 @@ void sslClient(int port=8100, char* hostname="localhost")
 	RoboCupSSLClient client(port, hostname);
 	client.open(false);
 	SSL_WrapperPacket packet;
+	String str;
 	printf("TestClient Started! Waiting for data. \n");
 	while(true) {
 		//printf(".");
@@ -149,6 +150,9 @@ void sslClient(int port=8100, char* hostname="localhost")
 			{
 				printf("Sim-To-Tracker!\n");
 			}
+		} else if(client.receive(str)) {
+		    printf("Vision-To-Tracker!\n");
+		    printf("<|%s|>\n", str.c_str());
 		}
 	}
 }
