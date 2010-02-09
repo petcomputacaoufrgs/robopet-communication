@@ -33,7 +33,7 @@ void rewindscr(void);
 void clrscr(void);
 
 //debugs
-#define debug_int(x) printf(#x ": %i\n", x)
+#define debug_int(x) printf(#x ": %5i --\n", x)
 
 //========================================================================
 //  This software is free: you can redistribute it and/or modify
@@ -91,3 +91,4 @@ public:
 };
 
 #endif
+

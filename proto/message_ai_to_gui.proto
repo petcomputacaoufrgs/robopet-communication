@@ -3,11 +3,11 @@
 message GUIRobot {
 	required int32 current_x = 1;
 	required int32 current_y = 2;
-	required float current_theta = 3;
+	required int32 current_theta = 3;
 
 	required int32 future_x = 4;
 	required int32 future_y = 5;
-	required float future_theta = 6;
+	required int32 future_theta = 6;
 
 	required int32 past_x = 7;
 	required int32 past_y = 8;
@@ -26,3 +26,4 @@ message AIToGUI {
 	repeated GUIRobot yellow_robots = 2;
 	required GUIBall ball = 3;
 }
+

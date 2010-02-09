@@ -1,5 +1,6 @@
 /* Artificial Inteligence to Tracker */
 
 message AIToTracker {
-	required float nada = 1;
+	required int32 nada = 1;
 }
+

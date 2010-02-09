@@ -6,10 +6,10 @@ message KickAI {
 }
 
 message RobotAI {
-	required double r = 3; /* displacement vector (r, theta) */
-	required double theta = 4;
-	required double omega = 5; //angular displacement
-	required double movement_intensity = 6; //force
+	required int32 r = 3; /* displacement vector (r, theta) */
+	required int32 theta = 4;
+	required int32 omega = 5; //angular displacement
+	required int32 movement_intensity = 6; //force
 	required KickAI kick = 7;
 	optional uint32 future_x = 8;
 	optional uint32 future_y = 9;
@@ -19,3 +19,4 @@ message AIToSim {
 	repeated RobotAI robots = 1;
 	required uint32 team = 2; //0 or 1
 }
+
