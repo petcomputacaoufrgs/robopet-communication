@@ -125,11 +125,11 @@ void sslClient(int port=8100, char* hostname="localhost")
 				printf("Ball: <%d, %d>\n", packet.trackertoai().ball().x(),
 				 									packet.trackertoai().ball().y());
 				for(int i=0; i<packet.trackertoai().robots_blue_size(); i++)
-					printf("Blue Robot[%d]: <%d, %d>\n", i,
+					printf("Blue Robot[%d]: <%f, %f>\n", i,
 											packet.trackertoai().robots_blue(i).x(),
 											packet.trackertoai().robots_blue(i).y());
 				for(int i=0; i<packet.trackertoai().robots_yellow_size(); i++)
-					printf("Yellow Robot[%d]: <%d, %d>\n", i,
+					printf("Yellow Robot[%d]: <%f, %f>\n", i,
 											packet.trackertoai().robots_yellow(i).x(),
 											packet.trackertoai().robots_yellow(i).y());
 			}
