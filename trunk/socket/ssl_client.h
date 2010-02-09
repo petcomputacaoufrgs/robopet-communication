@@ -27,6 +27,8 @@
 
 #include "messages_robocup_ssl_wrapper.pb.h"
 
+typedef std::string String;
+
 using namespace std;
 /**
 	@author Author Name
@@ -50,7 +52,9 @@ public:
     bool open(bool blocking=false);
     void close();
     bool receive(SSL_WrapperPacket & packet);
+    bool receive(String & packet);
 
 };
 
 #endif
+

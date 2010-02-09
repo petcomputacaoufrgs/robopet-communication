@@ -2,7 +2,8 @@
 #define ROBOCUP_SSL_SERVER_H
 
 enum {
-	PORT_AI_TO_GUI = 8100,
+    PORT_VISION_TO_TRACKER = 8100,
+	PORT_AI_TO_GUI,
 	PORT_AI_TO_RADIO,
 	PORT_AI_TO_SIM,
 	PORT_GUI_TO_AI,
@@ -20,6 +21,7 @@ enum {
 #define IP_TRACKER_TO_AI "localhost"
 #define IP_AI_TO_TRACKER "localhost"
 #define IP_RADIO_TO_TRACKER "localhost"
+#define IP_VISION_TO_TRACKER "143.54.6.154"
 
 enum {
 	TEAM_BLUE,

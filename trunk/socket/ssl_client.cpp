@@ -79,3 +79,16 @@ bool RoboCupSSLClient::receive(SSL_WrapperPacket & packet) {
   }
   return false;
 }
+
+bool RoboCupSSLClient::receive(String & packet) {
+  Net::Address src;
+  int r=0;
+  r = mc.recv(in_buffer,MaxDataGramSize,src);
+  if (r>0) {
+    fflush(stdout);
+    packet = String(in_buffer);
+    return true;
+  }
+  return false;
+}
+
