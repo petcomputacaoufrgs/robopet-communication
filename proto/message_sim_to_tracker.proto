@@ -1,8 +1,8 @@
 /* Simulator to Tracker */
 
 message BallSim {
-	required uint32 x = 1;
-	required uint32 y = 2;
+	required double x = 1;
+	required double y = 2;
 }
 
 message RobotSim {
@@ -16,4 +16,3 @@ message SimToTracker {
 	repeated RobotSim robots_blue = 2;
 	repeated RobotSim robots_yellow = 3;
 }
-

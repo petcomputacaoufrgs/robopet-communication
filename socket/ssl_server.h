@@ -1,3 +1,6 @@
+#ifndef ROBOCUP_SSL_SERVER_H
+#define ROBOCUP_SSL_SERVER_H
+
 enum {
 	PORT_AI_TO_GUI = 8100,
 	PORT_AI_TO_RADIO,
@@ -24,6 +27,14 @@ enum {
 	TEAM_TOTAL
 };
 
+// console graphics
+int gotoxy(int x, int y);
+void rewindscr(void);
+void clrscr(void);
+
+//debugs
+#define debug_int(x) printf(#x ": %i\n", x)
+
 //========================================================================
 //  This software is free: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License Version 3,
@@ -44,8 +55,6 @@ enum {
   \author  Stefan Zickler, 2009
 */
 //========================================================================
-#ifndef ROBOCUP_SSL_SERVER_H
-#define ROBOCUP_SSL_SERVER_H
 #include "udp_netraw.h"
 #include <string>
 //#include <QMutex>

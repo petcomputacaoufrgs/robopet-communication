@@ -6,8 +6,8 @@ message BallTracker {
 }
 
 message RobotTracker {
-	required uint32 x = 1;
-	required uint32 y = 2;
+	required double x = 1;
+	required double y = 2;
 	required double theta = 3;
 }
 
@@ -16,4 +16,3 @@ message TrackerToAI {
 	repeated RobotTracker robots_blue = 2;
 	repeated RobotTracker robots_yellow = 3;
 }
-
