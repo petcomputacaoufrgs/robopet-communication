@@ -84,7 +84,7 @@ RoboCupSSLServer::RoboCupSSLServer(int port,
   _port=port;
   _net_address=net_address;
   _net_interface=net_interface;
-
+  pthread_mutex_init(&mutex, NULL);
 }
 
 
@@ -126,6 +126,7 @@ bool RoboCupSSLServer::open() {
 }
 
 bool RoboCupSSLServer::send(const SSL_WrapperPacket & packet) {
+
   string buffer;
   packet.SerializeToString(&buffer);
   Net::Address multiaddr;
@@ -160,3 +161,4 @@ bool RoboCupSSLServer::send(const TrackerToAI & trackerToAi) {
 	tdata->CopyFrom(trackerToAi);
 	return send(pkt);
 }
+

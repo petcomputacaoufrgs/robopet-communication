@@ -6,9 +6,9 @@ message BallTracker {
 }
 
 message RobotTracker {
-	required double x = 1;
-	required double y = 2;
-	required double theta = 3;
+	required int32 x = 1;
+	required int32 y = 2;
+	required int32 theta = 3;
 }
 
 message TrackerToAI {
@@ -16,3 +16,4 @@ message TrackerToAI {
 	repeated RobotTracker robots_blue = 2;
 	repeated RobotTracker robots_yellow = 3;
 }
+
