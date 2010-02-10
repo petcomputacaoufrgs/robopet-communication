@@ -6,6 +6,7 @@ message RadioRobot {
 	required int32 displacement_theta = 3;
 	required int32 drible = 4;
 	required int32 kick = 5;
+	required int32 id = 6;
 }
 
 message AIToRadio {
