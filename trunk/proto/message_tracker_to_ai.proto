@@ -1,8 +1,8 @@
 /* Tracker to Artificial Inteligence */
 
 message BallTracker {
-	required uint32 x = 1;
-	required uint32 y = 2;
+	required int32 x = 1;
+	required int32 y = 2;
 }
 
 message RobotTracker {

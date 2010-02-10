@@ -1,7 +1,7 @@
 /* Artificial Inteligence to Simulator */
 
 message KickAI {
-	required uint32 intensity = 1;
+	required int32 intensity = 1;
 	required bool is_chip_kick = 2;
 }
 
@@ -11,12 +11,12 @@ message RobotAI {
 	required int32 omega = 5; //angular displacement
 	required int32 movement_intensity = 6; //force
 	required KickAI kick = 7;
-	optional uint32 future_x = 8;
-	optional uint32 future_y = 9;
+	optional int32 future_x = 8;
+	optional int32 future_y = 9;
 }
 
 message AIToSim {
 	repeated RobotAI robots = 1;
-	required uint32 team = 2; //0 or 1
+	required int32 team = 2; //0 or 1
 }
 
