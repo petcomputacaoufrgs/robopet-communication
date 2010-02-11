@@ -1,9 +1,9 @@
 /* Artificial Inteligence to Radio */
 
 message RadioRobot {
-	required int32 displacement_x = 1;
-	required int32 displacement_y = 2;
-	required int32 displacement_theta = 3;
+	required float displacement_x = 1;
+	required float displacement_y = 2;
+	required float displacement_theta = 3;
 	required int32 drible = 4;
 	required int32 kick = 5;
 	required int32 id = 6;
