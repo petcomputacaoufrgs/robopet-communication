@@ -37,6 +37,8 @@ void clrscr(void);
 //debugs
 #define debug_int(x) printf(#x ": %5i --\n", x)
 
+#define SCR_CLEAR_DELAY 100
+
 //========================================================================
 //  This software is free: you can redistribute it and/or modify
 //  it under the terms of the GNU General Public License Version 3,
