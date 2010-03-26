@@ -6,7 +6,7 @@
 
 #define MAX_ROBOTS 5
 
-void sslServer(int port=8100, char* hostname="localhost")
+void sslServer(int port=8100, char* hostname=(char*)"localhost")
 {
 	RoboCupSSLServer server(port, hostname);
 	SSL_WrapperPacket packet;
@@ -64,7 +64,8 @@ void sslServer(int port=8100, char* hostname="localhost")
 	 p4->set_future_theta(30);
 	 p4->set_past_x(500);
 	 p4->set_past_y(500);
-	 //*/
+	 
+	 
 
 	/*
 	 GUIToAI *guitoai = packet.mutable_guitoai();
@@ -76,7 +77,7 @@ void sslServer(int port=8100, char* hostname="localhost")
 	server.open();
 	while(true) {
 
-			/*for (int i=0; ; ++i)
+			for (int i=0; ; ++i)
 			{
 				b->set_x(i%5000 + 100);
 	 			b->set_y(i%5000 + 100);
@@ -87,12 +88,12 @@ void sslServer(int port=8100, char* hostname="localhost")
 				printf("Mandei: %d\n",p1->current_x());
 				usleep(5000);
 				server.send(packet);
-			}*/
-			server.send(packet);
+			}
+			//server.send(packet);
 	}
 }
 
-void sslClient(int port=8100, char* hostname="localhost")
+void sslClient(int port=8100, char* hostname=(char*)"localhost")
 {
 	RoboCupSSLClient client(port, hostname);
 	client.open(false);
@@ -161,7 +162,7 @@ int main(int argc, char **argv)
 {
 	char ch;
 	int port = 8100;
-	char *hostname = (char*) "143.54.12.65";//"localhost";
+	char *hostname = (char*) "143.54.12.150"; //insira aqui o IP da máquina
 	bool server = false;
 	bool client = false;
 
@@ -177,9 +178,8 @@ int main(int argc, char **argv)
 	else if(server && client) exit(1);
 
 	if(server) {
-		sslServer(port, hostname);
+		sslServer(port);
 	} else {
 		sslClient(port, hostname);
 	}
 }
-

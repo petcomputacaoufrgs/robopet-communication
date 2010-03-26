@@ -35,7 +35,7 @@ void rewindscr(void);
 void clrscr(void);
 
 //debugs
-#define debug_int(x) //printf(#x ": %5i --\n", x)
+#define debug_int(x) printf(#x ": %5i --\n", x)
 
 #define SCR_CLEAR_DELAY 100
 
@@ -95,4 +95,3 @@ public:
 };
 
 #endif
-
