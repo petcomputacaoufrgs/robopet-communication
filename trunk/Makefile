@@ -7,6 +7,8 @@ SOCKET_PATH = socket
 PROTO_PATH = proto
 INC_PATHS = -I$(PACKETS_PATH) -I$(SOCKET_PATH)
 
+OBJECTS = ssl_server.o ssl_client.o udp_netraw.o
+
 PROTOBUF_FILES_H = message_gui_to_ai.pb.h \
 				message_ai_to_gui.pb.h \
 				message_ai_to_radio.pb.h \
@@ -23,10 +25,17 @@ PROTOBUF_FILES_H = message_gui_to_ai.pb.h \
 PROTOBUF_FILES_O = $(PROTOBUF_FILES_H:.h=.o)
 PROTOBUF_FILES_CC = $(PROTOBUF_FILES_H:.h=.cc)
 
-all:  $(PROTOBUF_FILES_O) ssl_server.o ssl_client.o communication_test udpsock_test
+.PHONY : all clean
+
+all:  $(PROTOBUF_FILES_O) $(OBJECTS) communication.a communication_test udpsock_test
+
+clean:
+	rm communication.a
+	rm *.o
+	rm packets/*
 
 ### CLIENT & SERVER ###
-communication_test: communication_test.cpp ssl_server.o ssl_client.o udp_netraw.o $(PROTOBUF_FILES_O)
+communication_test: communication_test.cpp $(OBJECTS) $(PROTOBUF_FILES_O)
 	$(CC) $(INC_PATHS) -o $@ $^ $(CFLAGS) $(LFLAGS) `pkg-config --cflags --libs protobuf`
 
 udpsock_test: udpsock_test.cpp udp_netraw.o
@@ -40,6 +49,9 @@ ssl_server.o: $(SOCKET_PATH)/ssl_server.cpp $(SOCKET_PATH)/ssl_server.h
 
 ssl_client.o: $(SOCKET_PATH)/ssl_client.cpp $(SOCKET_PATH)/ssl_client.h
 	$(CC) $(INC_PATHS) -c -o $@ $< $(CFLAGS) $(LFLAGS)
+
+communication.a:
+	ar rsv communication.a $(OBJECTS) $(PROTOBUF_FILES_O)
 
 ### PROTOBUF ###
 %.pb.o: $(PROTO_PATH)/%.proto
