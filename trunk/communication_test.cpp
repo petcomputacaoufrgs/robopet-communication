@@ -1,71 +1,81 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
+
+#include <map>
+#include <string>
+
 #include "ssl_client.h"
 #include "ssl_server.h"
 
 #define MAX_ROBOTS 5
+
+void makeAIToGUI(SSL_WrapperPacket &packet)
+{
+    AIToGUI *aitogui = packet.mutable_aitogui();
+    AIToGUI::Ball *b = aitogui->mutable_ball();
+    b->set_x(1000);
+    b->set_y(1000);
+    b->set_past_x(1);
+    b->set_past_y(2);
+
+    AIToGUI::Robot *p1 = aitogui->add_blue_robots();
+    p1->set_current_x(500);
+    p1->set_current_y(500);
+    p1->set_current_theta(30);
+    p1->set_future_x(5000);
+    p1->set_future_y(5000);
+    p1->set_future_theta(30);
+    p1->set_past_x(500);
+    p1->set_past_y(500);
+
+    AIToGUI::Robot *p2 = aitogui->add_yellow_robots();
+    p2->set_current_x(500);
+    p2->set_current_y(500);
+    p2->set_current_theta(30);
+    p2->set_future_x(5000);
+    p2->set_future_y(500);
+    p2->set_future_theta(0);
+    p2->set_past_x(500);
+    p2->set_past_y(500);
+
+    AIToGUI::Robot *p3 = aitogui->add_blue_robots();
+    p3->set_current_x(1000);
+    p3->set_current_y(2700);
+    p3->set_current_theta(30);
+    p3->set_future_x(1000);
+    p3->set_future_y(2700);
+    p3->set_future_theta(30);
+    p3->set_past_x(500);
+    p3->set_past_y(500);
+
+    AIToGUI::Robot *p4 = aitogui->add_yellow_robots();
+    p4->set_current_x(6000);
+    p4->set_current_y(2700);
+    p4->set_current_theta(30);
+    p4->set_future_x(6000);
+    p4->set_future_y(2700);
+    p4->set_future_theta(30);
+    p4->set_past_x(500);
+    p4->set_past_y(500);
+}
+
+void makeTrackerToAI(SSL_WrapperPacket &packet)
+{
+    TrackerToAI* p1 = packet.mutable_trackertoai();
+	TrackerToAI::Ball* a = p1->mutable_ball();
+	a->set_x(2);
+	a->set_y(2);
+
+}
 
 void sslServer(int port=8100, char* hostname=(char*)"localhost")
 {
 	RoboCupSSLServer server(port, hostname);
 	SSL_WrapperPacket packet;
 
-	//TrackerToAI* p1 = packet.mutable_trackertoai();
-	//BallTracker* a = p1->mutable_ball();
-	//a->set_x(2);
-	//a->set_y(2);
-
-
-	 //*
-	 AIToGUI *aitogui = packet.mutable_aitogui();
-	 AIToGUI::Ball *b = aitogui->mutable_ball();
-	 b->set_x(1000);
-	 b->set_y(1000);
-	 b->set_past_x(1);
-	 b->set_past_y(2);
-
-	 AIToGUI::Robot *p1 = aitogui->add_blue_robots();
-	 p1->set_current_x(500);
-	 p1->set_current_y(500);
-     p1->set_current_theta(30);
-     p1->set_future_x(5000);
-	 p1->set_future_y(5000);
-	 p1->set_future_theta(30);
-	 p1->set_past_x(500);
-	 p1->set_past_y(500);
-
-	 AIToGUI::Robot *p2 = aitogui->add_yellow_robots();
-	 p2->set_current_x(500);
-	 p2->set_current_y(500);
-     p2->set_current_theta(30);
-     p2->set_future_x(5000);
-	 p2->set_future_y(500);
-	 p2->set_future_theta(0);
-	 p2->set_past_x(500);
-	 p2->set_past_y(500);
-
-	 AIToGUI::Robot *p3 = aitogui->add_blue_robots();
-	 p3->set_current_x(1000);
-	 p3->set_current_y(2700);
-     p3->set_current_theta(30);
-     p3->set_future_x(1000);
-	 p3->set_future_y(2700);
-	 p3->set_future_theta(30);
-	 p3->set_past_x(500);
-	 p3->set_past_y(500);
-
-	 AIToGUI::Robot *p4 = aitogui->add_yellow_robots();
-	 p4->set_current_x(6000);
-	 p4->set_current_y(2700);
-     p4->set_current_theta(30);
-     p4->set_future_x(6000);
-	 p4->set_future_y(2700);
-	 p4->set_future_theta(30);
-	 p4->set_past_x(500);
-	 p4->set_past_y(500);
-	 
-	 
+    makeAIToGUI(packet);
+    makeTrackerToAI(packet);
 
 	/*
 	 GUIToAI *guitoai = packet.mutable_guitoai();
@@ -74,21 +84,23 @@ void sslServer(int port=8100, char* hostname=(char*)"localhost")
 
 	printf("Press <Enter> to open connection with client...\n");
 	getchar();
+
 	server.open();
+
 	while(true) {
 
-			for (int i=0; ; ++i)
-			{
-				b->set_x(i%5000 + 100);
-	 			b->set_y(i%5000 + 100);
-				p1->set_current_x(i%5000);
-	 			p1->set_current_y(i%5000);
-	 			p1->set_current_theta(i%360);
-				p2->set_current_x(i%5000);
-				printf("Mandei: %d\n",p1->current_x());
-				usleep(5000);
+//			for (int i=0; ; ++i)
+//			{
+//				b->set_x(i%5000 + 100);
+//	 			b->set_y(i%5000 + 100);
+//				p1->set_current_x(i%5000);
+//	 			p1->set_current_y(i%5000);
+//	 			p1->set_current_theta(i%360);
+//				p2->set_current_x(i%5000);
+//				printf("Mandei: %d\n",p1->current_x());
+//				usleep(5000);
 				server.send(packet);
-			}
+//			}
 			//server.send(packet);
 	}
 }
@@ -163,6 +175,7 @@ int main(int argc, char **argv)
 	char ch;
 	int port = 8100;
 	char *hostname = (char*) "143.54.12.150"; //insira aqui o IP da máquina
+
 	bool server = false;
 	bool client = false;
 
