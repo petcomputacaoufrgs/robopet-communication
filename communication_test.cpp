@@ -62,10 +62,26 @@ void makeAIToGUI(SSL_WrapperPacket &packet)
 
 void makeTrackerToAI(SSL_WrapperPacket &packet)
 {
-    TrackerToAI* p1 = packet.mutable_trackertoai();
-	TrackerToAI::Ball* a = p1->mutable_ball();
-	a->set_x(2);
-	a->set_y(2);
+    TrackerToAI* trackertoai = packet.mutable_trackertoai();
+    
+    TrackerToAI::Ball *b = trackertoai->mutable_ball();
+    b->set_x(1000);
+    b->set_y(1000);
+
+    for (int i=0; i < 5; ++i) {
+        TrackerToAI::Robot *r = trackertoai->add_blue_robots();
+        r->set_x(i*100);
+        r->set_y(i*100);
+        r->set_theta(i*10);
+        r->set_id(i);
+        
+        r = trackertoai->add_yellow_robots();
+        r->set_x(i*100);
+        r->set_y(i*100);
+        r->set_theta(i*10);
+        r->set_id(i);
+    }
+
 
 }
 
@@ -138,14 +154,14 @@ void sslClient(int port=8100, char* hostname=(char*)"localhost")
 				printf("Tracker-To-AI!\n");
 				printf("Ball: <%d, %d>\n", packet.trackertoai().ball().x(),
 				 									packet.trackertoai().ball().y());
-				for(int i=0; i<packet.trackertoai().robots_blue_size(); i++)
+				for(int i=0; i<packet.trackertoai().blue_robots_size(); i++)
 					printf("Blue Robot[%d]: <%i, %i>\n", i,
-											packet.trackertoai().robots_blue(i).x(),
-											packet.trackertoai().robots_blue(i).y());
-				for(int i=0; i<packet.trackertoai().robots_yellow_size(); i++)
+											packet.trackertoai().blue_robots(i).x(),
+											packet.trackertoai().blue_robots(i).y());
+				for(int i=0; i<packet.trackertoai().yellow_robots_size(); i++)
 					printf("Yellow Robot[%d]: <%i, %i>\n", i,
-											packet.trackertoai().robots_yellow(i).x(),
-											packet.trackertoai().robots_yellow(i).y());
+											packet.trackertoai().yellow_robots(i).x(),
+											packet.trackertoai().yellow_robots(i).y());
 			}
 			if (packet.has_aitoradio())
 			{
