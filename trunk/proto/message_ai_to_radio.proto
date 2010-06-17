@@ -1,15 +1,15 @@
 /* Artificial Inteligence to Radio */
 
-message RadioRobot {
-	required float displacement_x = 1;
-	required float displacement_y = 2;
-	required float displacement_theta = 3;
-	required int32 drible = 4;
-	required int32 kick = 5;
-	required int32 id = 6;
-}
-
 message AIToRadio {
-	repeated RadioRobot robots = 1;
+    message Robot {
+	    required float displacement_x = 1;
+	    required float displacement_y = 2;
+	    required float displacement_theta = 3;
+	    required int32 drible = 4;
+	    required int32 kick = 5;
+	    required int32 id = 6;
+    }
+	
+    repeated Robot robots = 1;
 }
 
