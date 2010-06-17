@@ -19,13 +19,13 @@ void sslServer(int port=8100, char* hostname=(char*)"localhost")
 
 	 //*
 	 AIToGUI *aitogui = packet.mutable_aitogui();
-	 GUIBall *b = aitogui->mutable_ball();
+	 AIToGUI::Ball *b = aitogui->mutable_ball();
 	 b->set_x(1000);
 	 b->set_y(1000);
 	 b->set_past_x(1);
 	 b->set_past_y(2);
 
-	 GUIRobot *p1 = aitogui->add_blue_robots();
+	 AIToGUI::Robot *p1 = aitogui->add_blue_robots();
 	 p1->set_current_x(500);
 	 p1->set_current_y(500);
      p1->set_current_theta(30);
@@ -35,7 +35,7 @@ void sslServer(int port=8100, char* hostname=(char*)"localhost")
 	 p1->set_past_x(500);
 	 p1->set_past_y(500);
 
-	 GUIRobot *p2 = aitogui->add_yellow_robots();
+	 AIToGUI::Robot *p2 = aitogui->add_yellow_robots();
 	 p2->set_current_x(500);
 	 p2->set_current_y(500);
      p2->set_current_theta(30);
@@ -45,7 +45,7 @@ void sslServer(int port=8100, char* hostname=(char*)"localhost")
 	 p2->set_past_x(500);
 	 p2->set_past_y(500);
 
-	 GUIRobot *p3 = aitogui->add_blue_robots();
+	 AIToGUI::Robot *p3 = aitogui->add_blue_robots();
 	 p3->set_current_x(1000);
 	 p3->set_current_y(2700);
      p3->set_current_theta(30);
@@ -55,7 +55,7 @@ void sslServer(int port=8100, char* hostname=(char*)"localhost")
 	 p3->set_past_x(500);
 	 p3->set_past_y(500);
 
-	 GUIRobot *p4 = aitogui->add_yellow_robots();
+	 AIToGUI::Robot *p4 = aitogui->add_yellow_robots();
 	 p4->set_current_x(6000);
 	 p4->set_current_y(2700);
      p4->set_current_theta(30);

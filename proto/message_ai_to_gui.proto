@@ -1,29 +1,31 @@
 /* Artificial Inteligence to GUI */
 
-message GUIRobot {
-	required int32 current_x = 1;
-	required int32 current_y = 2;
-	required int32 current_theta = 3;
-
-	required int32 future_x = 4;
-	required int32 future_y = 5;
-	required int32 future_theta = 6;
-
-	required int32 past_x = 7;
-	required int32 past_y = 8;
-}
-
-message GUIBall {
-	required int32 x = 1;
-	required int32 y = 2;
-
-	required int32 past_x = 3;
-	required int32 past_y = 4;
-}
 
 message AIToGUI {
-	repeated GUIRobot blue_robots = 1;
-	repeated GUIRobot yellow_robots = 2;
-	required GUIBall ball = 3;
+
+    message Ball {
+	    required int32 x = 1;
+	    required int32 y = 2;
+
+	    required int32 past_x = 3;
+	    required int32 past_y = 4;
+    }
+
+    message Robot {
+	    required int32 current_x = 1;
+	    required int32 current_y = 2;
+	    required int32 current_theta = 3;
+
+	    required int32 future_x = 4;
+	    required int32 future_y = 5;
+	    required int32 future_theta = 6;
+
+	    required int32 past_x = 7;
+	    required int32 past_y = 8;
+    }
+
+	repeated Robot blue_robots = 1;
+	repeated Robot yellow_robots = 2;
+	required Ball ball = 3;
 }
 

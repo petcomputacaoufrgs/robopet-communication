@@ -1,19 +1,20 @@
 /* Simulator to Tracker */
 
-message BallSim {
-	required int32 x = 1;
-	required int32 y = 2;
-}
-
-message RobotSim {
-	required int32 x = 1;
-	required int32 y = 2;
-	required int32 theta = 3;
-}
-
 message SimToTracker {
-	required BallSim ball = 1;
-	repeated RobotSim robots_blue = 2;
-	repeated RobotSim robots_yellow = 3;
+
+    message Ball {
+	    required int32 x = 1;
+	    required int32 y = 2;
+    }
+
+    message Robot {
+	    required int32 x = 1;
+	    required int32 y = 2;
+	    required int32 theta = 3;
+    }
+
+	required Ball ball = 1;
+	repeated Robot robots_blue = 2;
+	repeated Robot robots_yellow = 3;
 }
 
