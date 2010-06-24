@@ -7,20 +7,17 @@ SOCKET_PATH = socket
 PROTO_PATH = proto
 INC_PATHS = -I$(PACKETS_PATH) -I$(SOCKET_PATH)
 
-OBJECTS = ssl_server.o ssl_client.o udp_netraw.o
+OBJECTS = rp_server.o rp_client.o udp_netraw.o
 
 PROTOBUF_FILES_H = message_gui_to_ai.pb.h \
 				message_ai_to_gui.pb.h \
 				message_ai_to_radio.pb.h \
-				messages_robocup_ssl_detection.pb.h \
-				messages_robocup_ssl_geometry.pb.h \
-				messages_robocup_ssl_refbox_log.pb.h \
 				message_tracker_to_ai.pb.h \
 				message_sim_to_tracker.pb.h \
 				message_ai_to_sim.pb.h \
 				message_ai_to_tracker.pb.h \
 				message_radio_to_tracker.pb.h \
-				messages_robocup_ssl_wrapper.pb.h
+				messages_robopet_wrapper.pb.h
 
 PROTOBUF_FILES_O = $(PROTOBUF_FILES_H:.h=.o)
 PROTOBUF_FILES_CC = $(PROTOBUF_FILES_H:.h=.cc)
@@ -44,10 +41,10 @@ udpsock_test: udpsock_test.cpp udp_netraw.o
 udp_netraw.o: $(SOCKET_PATH)/udp_netraw.cpp $(SOCKET_PATH)/udp_netraw.h
 	$(CC) $(INC_PATHS) -c -o $@ $< $(CFLAGS) $(LFLAGS)
 
-ssl_server.o: $(SOCKET_PATH)/ssl_server.cpp $(SOCKET_PATH)/ssl_server.h
+rp_server.o: $(SOCKET_PATH)/rp_server.cpp $(SOCKET_PATH)/rp_server.h
 	$(CC) $(INC_PATHS) -c -o $@ $< $(CFLAGS) $(LFLAGS)
 
-ssl_client.o: $(SOCKET_PATH)/ssl_client.cpp $(SOCKET_PATH)/ssl_client.h
+rp_client.o: $(SOCKET_PATH)/rp_client.cpp $(SOCKET_PATH)/rp_client.h
 	$(CC) $(INC_PATHS) -c -o $@ $< $(CFLAGS) $(LFLAGS)
 
 communication.a:

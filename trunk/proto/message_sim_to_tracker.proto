@@ -14,7 +14,6 @@ message SimToTracker {
     }
 
 	required Ball ball = 1;
-	repeated Robot robots_blue = 2;
-	repeated Robot robots_yellow = 3;
+	repeated Robot blue_robots = 2;
+	repeated Robot yellow_robots = 3;
 }
-

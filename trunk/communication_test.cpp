@@ -5,12 +5,12 @@
 #include <map>
 #include <string>
 
-#include "ssl_client.h"
-#include "ssl_server.h"
+#include "rp_client.h"
+#include "rp_server.h"
 
 #define MAX_ROBOTS 5
 
-void makeAIToGUI(SSL_WrapperPacket &packet)
+void makeAIToGUI(RoboPET_WrapperPacket &packet)
 {
     AIToGUI *aitogui = packet.mutable_aitogui();
     AIToGUI::Ball *b = aitogui->mutable_ball();
@@ -58,9 +58,10 @@ void makeAIToGUI(SSL_WrapperPacket &packet)
     p4->set_future_theta(30);
     p4->set_past_x(500);
     p4->set_past_y(500);
+    
 }
 
-void makeTrackerToAI(SSL_WrapperPacket &packet)
+void makeTrackerToAI(RoboPET_WrapperPacket &packet)
 {
     TrackerToAI* trackertoai = packet.mutable_trackertoai();
     
@@ -85,13 +86,52 @@ void makeTrackerToAI(SSL_WrapperPacket &packet)
 
 }
 
+void makeSimToTracker(RoboPET_WrapperPacket &packet) {
+	SimToTracker* simtotracker = packet.mutable_simtotracker();
+	
+	SimToTracker::Ball *b = simtotracker->mutable_ball();
+	b->set_x(1000);
+	b->set_y(1000);
+	
+	for(int i=0; i < 5; i++) {
+		SimToTracker::Robot *r = simtotracker->add_blue_robots();
+        r->set_x(i*100);
+        r->set_y(i*100);
+        r->set_theta(i*10);
+        
+        r = simtotracker->add_yellow_robots();
+        r->set_x(i*100);
+        r->set_y(i*100);
+        r->set_theta(i*10);
+	}
+}
+
+void makeAIToTracker(RoboPET_WrapperPacket &packet) {
+	AIToTracker* aitotracker = packet.mutable_aitotracker();
+	
+	aitotracker->set_nada(1);
+}
+
+void makeRadioToTracker(RoboPET_WrapperPacket &packet){
+	RadioToTracker* radiototracker = packet.mutable_radiototracker();
+	
+	radiototracker->set_nada(1);
+}
+
 void sslServer(int port=8100, char* hostname=(char*)"localhost")
 {
-	RoboCupSSLServer server(port, hostname);
-	SSL_WrapperPacket packet;
+	printf("Using port %i and host %s\n", port, hostname);
+	RoboPETServer server(port, hostname);
+	RoboPETServer simtotracker(PORT_SIM_TO_TRACKER, "localhost");
+	RoboPETServer aitotracker(PORT_AI_TO_TRACKER, "localhost");
+	RoboPETServer radiototracker(PORT_RADIO_TO_TRACKER, "localhost");
+	RoboPET_WrapperPacket packet;
 
     makeAIToGUI(packet);
     makeTrackerToAI(packet);
+    makeSimToTracker(packet);
+    makeAIToTracker(packet);
+    makeRadioToTracker(packet);
 
 	/*
 	 GUIToAI *guitoai = packet.mutable_guitoai();
@@ -102,6 +142,9 @@ void sslServer(int port=8100, char* hostname=(char*)"localhost")
 	getchar();
 
 	server.open();
+	simtotracker.open();
+	aitotracker.open();
+	radiototracker.open();
 
 	while(true) {
 
@@ -116,6 +159,9 @@ void sslServer(int port=8100, char* hostname=(char*)"localhost")
 //				printf("Mandei: %d\n",p1->current_x());
 //				usleep(5000);
 				server.send(packet);
+				simtotracker.send(packet);
+				aitotracker.send(packet);
+				radiototracker.send(packet);
 //			}
 			//server.send(packet);
 	}
@@ -123,9 +169,10 @@ void sslServer(int port=8100, char* hostname=(char*)"localhost")
 
 void sslClient(int port=8100, char* hostname=(char*)"localhost")
 {
-	RoboCupSSLClient client(port, hostname);
+	printf("Using port %i and host %s\n", port, hostname);
+	RoboPETClient client(port, hostname);
 	client.open(false);
-	SSL_WrapperPacket packet;
+	RoboPET_WrapperPacket packet;
 	String str;
 	printf("TestClient Started! Waiting for data. \n");
 	while(true) {
@@ -133,14 +180,6 @@ void sslClient(int port=8100, char* hostname=(char*)"localhost")
 		if (client.receive(packet)) {
 			printf("----------------------------\n");
 			printf("TestClient Received ");
-			if (packet.has_detection())
-			{
-				printf("DetectionFrame!\n");
-			}
-			if (packet.has_geometry())
-			{
-				printf("GeometryData!\n");
-			}
 			if (packet.has_aitogui())
 			{
 				printf("AI-To-GUI!\n");
@@ -178,6 +217,10 @@ void sslClient(int port=8100, char* hostname=(char*)"localhost")
 			if (packet.has_simtotracker())
 			{
 				printf("Sim-To-Tracker!\n");
+			}
+			if (packet.has_radiototracker())
+			{
+				printf("Radio-To-Tracker!\n");
 			}
 		} else if(client.receive(str)) {
 		    printf("Vision-To-Tracker!\n");
