@@ -18,9 +18,9 @@
   \author  Stefan Zickler, 2009
 */
 //========================================================================
-#include "ssl_client.h"
+#include "rp_client.h"
 
-RoboCupSSLClient::RoboCupSSLClient(int port,
+RoboPETClient::RoboPETClient(int port,
                      string net_address,
                      string net_interface)
 {
@@ -31,16 +31,16 @@ RoboCupSSLClient::RoboCupSSLClient(int port,
 }
 
 
-RoboCupSSLClient::~RoboCupSSLClient()
+RoboPETClient::~RoboPETClient()
 {
   delete[] in_buffer;
 }
 
-void RoboCupSSLClient::close() {
+void RoboPETClient::close() {
   mc.close();
 }
 
-bool RoboCupSSLClient::open(bool blocking) {
+bool RoboPETClient::open(bool blocking) {
   close();
   //if(!mc.open(_port,true,true,blocking)) { //original
   if(!mc.open(_port,false,false,blocking)) { //modificado
@@ -68,7 +68,7 @@ bool RoboCupSSLClient::open(bool blocking) {
   return(true);
 }
 
-bool RoboCupSSLClient::receive(SSL_WrapperPacket & packet) {
+bool RoboPETClient::receive(RoboPET_WrapperPacket & packet) {
   Net::Address src;
   int r=0;
   r = mc.recv(in_buffer,MaxDataGramSize,src);
@@ -80,7 +80,7 @@ bool RoboCupSSLClient::receive(SSL_WrapperPacket & packet) {
   return false;
 }
 
-bool RoboCupSSLClient::receive(String & packet) {
+bool RoboPETClient::receive(String & packet) {
   Net::Address src;
   int r=0;
   r = mc.recv(in_buffer,MaxDataGramSize,src);
