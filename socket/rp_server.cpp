@@ -18,7 +18,7 @@
   \author  Stefan Zickler, 2009
 */
 //========================================================================
-#include "ssl_server.h"
+#include "rp_server.h"
 
 void rewindscr(void) {
 	gotoxy(0, 0);
@@ -77,7 +77,7 @@ int gotoxy(int x, int y) {
 	return 0;
 }
 
-RoboCupSSLServer::RoboCupSSLServer(int port,
+RoboPETServer::RoboPETServer(int port,
                      string net_address,
                      string net_interface)
 {
@@ -88,15 +88,15 @@ RoboCupSSLServer::RoboCupSSLServer(int port,
 }
 
 
-RoboCupSSLServer::~RoboCupSSLServer()
+RoboPETServer::~RoboPETServer()
 {
 }
 
-void RoboCupSSLServer::close() {
+void RoboPETServer::close() {
   mc.close();
 }
 
-bool RoboCupSSLServer::open() {
+bool RoboPETServer::open() {
   close();
 
   //if(!mc.open(_port,true,true)) { //original
@@ -125,7 +125,7 @@ bool RoboCupSSLServer::open() {
   return(true);
 }
 
-bool RoboCupSSLServer::send(const SSL_WrapperPacket & packet) {
+bool RoboPETServer::send(const RoboPET_WrapperPacket & packet) {
 
   string buffer;
   packet.SerializeToString(&buffer);
@@ -141,22 +141,8 @@ bool RoboCupSSLServer::send(const SSL_WrapperPacket & packet) {
   return(result);
 }
 
-bool RoboCupSSLServer::send(const SSL_DetectionFrame & frame) {
-  SSL_WrapperPacket pkt;
-  SSL_DetectionFrame * nframe = pkt.mutable_detection();
-  nframe->CopyFrom(frame);
-  return send(pkt);
-}
-
-bool RoboCupSSLServer::send(const SSL_GeometryData & geometry) {
-  SSL_WrapperPacket pkt;
-  SSL_GeometryData * gdata = pkt.mutable_geometry();
-  gdata->CopyFrom(geometry);
-  return send(pkt);
-}
-
-bool RoboCupSSLServer::send(const TrackerToAI & trackerToAi) {
-	SSL_WrapperPacket pkt;
+bool RoboPETServer::send(const TrackerToAI & trackerToAi) {
+	RoboPET_WrapperPacket pkt;
 	TrackerToAI * tdata = pkt.mutable_trackertoai();
 	tdata->CopyFrom(trackerToAi);
 	return send(pkt);

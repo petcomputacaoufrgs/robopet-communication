@@ -18,14 +18,14 @@
   \author  Stefan Zickler, 2009
 */
 //========================================================================
-#ifndef ROBOCUP_SSL_CLIENT_H
-#define ROBOCUP_SSL_CLIENT_H
+#ifndef ROBOPET_CLIENT_H
+#define ROBOPET_CLIENT_H
 #include "udp_netraw.h"
 #include <string>
 //#include <QMutex>
 #include <pthread.h>
 
-#include "messages_robocup_ssl_wrapper.pb.h"
+#include "messages_robopet_wrapper.pb.h"
 
 typedef std::string String;
 
@@ -34,7 +34,7 @@ using namespace std;
 	@author Author Name
 */
 
-class RoboCupSSLClient{
+class RoboPETClient{
 protected:
   static const int MaxDataGramSize = 65536;
   char * in_buffer;
@@ -44,17 +44,16 @@ protected:
   string _net_address;
   string _net_interface;
 public:
-    RoboCupSSLClient(int port = 10002,
+    RoboPETClient(int port = 10002,
                      string net_ref_address="127.0.0.1",
                      string net_ref_interface="");
 
-    ~RoboCupSSLClient();
+    ~RoboPETClient();
     bool open(bool blocking=false);
     void close();
-    bool receive(SSL_WrapperPacket & packet);
+    bool receive(RoboPET_WrapperPacket & packet);
     bool receive(String & packet);
 
 };
 
 #endif
-

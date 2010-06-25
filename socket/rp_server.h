@@ -1,5 +1,5 @@
-#ifndef ROBOCUP_SSL_SERVER_H
-#define ROBOCUP_SSL_SERVER_H
+#ifndef ROBOPET_SERVER_H
+#define ROBOPET_SERVER_H
 
 enum {
     PORT_VISION_TO_TRACKER = 8100,
@@ -64,14 +64,14 @@ void clrscr(void);
 //#include <QMutex>
 #include <pthread.h>
 
-#include "messages_robocup_ssl_wrapper.pb.h"
+#include "messages_robopet_wrapper.pb.h"
 
 using namespace std;
 
 /**
 	@author Stefan Zickler
 */
-class RoboCupSSLServer{
+class RoboPETServer{
 protected:
   Net::UDP mc; // multicast server
   pthread_mutex_t mutex;
@@ -80,16 +80,14 @@ protected:
   string _net_interface;
 
 public:
-    RoboCupSSLServer(int port = 10002,
+    RoboPETServer(int port = 10002,
                      string net_ref_address="127.0.0.1",
                      string net_ref_interface="");
 
-    ~RoboCupSSLServer();
+    ~RoboPETServer();
     bool open();
     void close();
-    bool send(const SSL_WrapperPacket & packet);
-    bool send(const SSL_DetectionFrame & frame);
-    bool send(const SSL_GeometryData & geometry);
+    bool send(const RoboPET_WrapperPacket & packet);
     bool send(const TrackerToAI & trackerToAi);
 
 };
