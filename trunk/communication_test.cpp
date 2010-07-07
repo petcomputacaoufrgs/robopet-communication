@@ -125,6 +125,7 @@ void sslServer(int port=8100, char* hostname=(char*)"localhost")
 	RoboPETServer simtotracker(PORT_SIM_TO_TRACKER, "localhost");
 	RoboPETServer aitotracker(PORT_AI_TO_TRACKER, "localhost");
 	RoboPETServer radiototracker(PORT_RADIO_TO_TRACKER, "localhost");
+	RoboPETServer aitogui(PORT_AI_TO_GUI, "localhost");
 	RoboPET_WrapperPacket packet;
 
     makeAIToGUI(packet);
@@ -145,25 +146,32 @@ void sslServer(int port=8100, char* hostname=(char*)"localhost")
 	simtotracker.open();
 	aitotracker.open();
 	radiototracker.open();
+	aitogui.open();
 
 	while(true) {
 
-//			for (int i=0; ; ++i)
-//			{
-//				b->set_x(i%5000 + 100);
-//	 			b->set_y(i%5000 + 100);
-//				p1->set_current_x(i%5000);
-//	 			p1->set_current_y(i%5000);
-//	 			p1->set_current_theta(i%360);
-//				p2->set_current_x(i%5000);
-//				printf("Mandei: %d\n",p1->current_x());
-//				usleep(5000);
+			/*for (int i=0; ; ++i)
+			{
+				AIToGUI::Ball *b = packet.mutable_aitogui()->mutable_ball();
+				b->set_x(i%5000 + 100);
+	 			b->set_y(i%5000 + 100);
+				AIToGUI::Robot *p1 = packet.mutable_aitogui()->blue_robots(0);
+				p1->set_current_x(i%5000);
+	 			p1->set_current_y(i%5000);
+	 			p1->set_current_theta(i%360);
+				//p2->set_current_x(i%5000);
+				usleep(5000);
 				server.send(packet);
 				simtotracker.send(packet);
 				aitotracker.send(packet);
 				radiototracker.send(packet);
-//			}
-			//server.send(packet);
+				aitogui.send(packet);
+			}*/
+			server.send(packet);
+			simtotracker.send(packet);
+			aitotracker.send(packet);
+			radiototracker.send(packet);
+			aitogui.send(packet);
 	}
 }
 
