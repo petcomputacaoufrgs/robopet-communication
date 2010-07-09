@@ -11,6 +11,7 @@ message SimToTracker {
 	    required int32 x = 1;
 	    required int32 y = 2;
 	    required int32 theta = 3;
+		required int32 id = 4;
     }
 
 	required Ball ball = 1;
