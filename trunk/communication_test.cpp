@@ -159,7 +159,6 @@ void sslServer(int port=8100, char* hostname=(char*)"localhost")
 				p1->set_current_x(i%5000);
 	 			p1->set_current_y(i%5000);
 	 			p1->set_current_theta(i%360);
-				//p2->set_current_x(i%5000);
 				usleep(5000);
 				server.send(packet);
 				simtotracker.send(packet);
