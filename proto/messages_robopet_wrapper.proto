@@ -2,7 +2,7 @@
 
 import "message_ai_to_gui.proto";
 import "message_ai_to_radio.proto";
-import "message_ai_to_sim.proto";
+import "message_radio_to_sim.proto";
 import "message_gui_to_ai.proto";
 import "message_sim_to_tracker.proto";
 import "message_tracker_to_ai.proto";
@@ -18,7 +18,7 @@ message RoboPET_WrapperPacket {
 */
   optional AIToGUI aiToGui = 4;
   optional AIToRadio aiToRadio = 5;
-  optional AIToSim aiToSim = 6;
+  optional RadioToSim aiToSim = 6;
   optional GUIToAI guiToAi = 7;
   optional SimToTracker simToTracker = 8;
   optional TrackerToAI trackerToAi = 9;

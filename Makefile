@@ -14,7 +14,7 @@ PROTOBUF_FILES_H = message_gui_to_ai.pb.h \
 				message_ai_to_radio.pb.h \
 				message_tracker_to_ai.pb.h \
 				message_sim_to_tracker.pb.h \
-				message_ai_to_sim.pb.h \
+				message_radio_to_sim.pb.h \
 				message_ai_to_tracker.pb.h \
 				message_radio_to_tracker.pb.h \
 				messages_robopet_wrapper.pb.h
