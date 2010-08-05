@@ -2,26 +2,24 @@
 #define ROBOPET_SERVER_H
 
 enum {
-    PORT_VISION_TO_TRACKER = 8100,
-	PORT_AI_TO_GUI,
+	PORT_AI_TO_GUI = 8100,
 	PORT_AI_TO_RADIO,
-	PORT_AI_TO_SIM,
-	PORT_GUI_TO_AI,
-	PORT_SIM_TO_TRACKER,
-	PORT_TRACKER_TO_AI,
 	PORT_AI_TO_TRACKER,
-	PORT_RADIO_TO_TRACKER
+	PORT_GUI_TO_AI,
+	PORT_RADIO_TO_SIM,
+	PORT_RADIO_TO_TRACKER,
+	PORT_SIM_TO_TRACKER,
+	PORT_TRACKER_TO_AI
 };
 
 #define IP_AI_TO_GUI "localhost"
 #define IP_AI_TO_RADIO "localhost"
-#define IP_AI_TO_SIM "localhost"
+#define IP_AI_TO_TRACKER "localhost"
 #define IP_GUI_TO_AI "localhost"
+#define IP_RADIO_TO_SIM "localhost"
+#define IP_RADIO_TO_TRACKER "localhost"
 #define IP_SIM_TO_TRACKER "localhost"
 #define IP_TRACKER_TO_AI "localhost"
-#define IP_AI_TO_TRACKER "localhost"
-#define IP_RADIO_TO_TRACKER "localhost"
-#define IP_VISION_TO_TRACKER "143.54.6.154"
 
 enum {
 	TEAM_BLUE,
