@@ -231,9 +231,9 @@ void sslClient(int port=8100, char* hostname=(char*)"localhost")
 			{
 				printf("AI-To-Radio!\n");
 			}
-			if (packet.has_aitosim())
+			if (packet.has_radiotosim())
 			{
-				printf("AI-To-Sim!\n");
+				printf("Radio-To-Sim!\n");
 			}
 			if (packet.has_aitotracker())
 			{
