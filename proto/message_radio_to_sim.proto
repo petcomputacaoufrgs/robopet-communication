@@ -1,0 +1,16 @@
+/* Radio to Simulator */
+
+message RadioToSim {
+    message Robot {
+
+		// Here we send the resulting displacement force vector
+		// We are not sure if it needs to be float - CHECK IT OUT
+	    required float force_x = 1;
+	    required float force_y = 2;
+	    required int32 displacement_theta = 3;
+	    required int32 kick = 4; // bool
+    }
+
+    repeated Robot robots = 1;
+	required int32 team = 2; //0 or 1
+}
