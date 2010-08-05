@@ -2,14 +2,14 @@
 
 message AIToRadio {
     message Robot {
-	    required float displacement_x = 1;
-	    required float displacement_y = 2;
-	    required float displacement_theta = 3;
-	    required int32 drible = 4;
-	    required int32 kick = 5;
+    	// position and angle displacements are int because we don't need more precision than milimeters/degree
+	    required int32 displacement_x = 1;
+	    required int32 displacement_y = 2;
+	    required int32 displacement_theta = 3;
+	    required int32 drible = 4; // bool
+	    required int32 kick = 5; //bool
 	    required int32 id = 6;
     }
-	
+
     repeated Robot robots = 1;
 }
-

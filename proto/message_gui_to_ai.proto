@@ -1,6 +1,7 @@
 /* GUI to Artificial Inteligence */
 
+/* Later we'll want to set AI states, for testing purposes */
+
 message GUIToAI {
 	required int32 nada = 1;
 }
-
