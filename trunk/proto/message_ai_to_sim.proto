@@ -7,16 +7,14 @@ message AIToSim {
         	required bool is_chip_kick = 2;
         }
 
-	    required int32 r = 3; /* displacement vector (r, theta) */
-	    required int32 theta = 4;
-	    required int32 omega = 5; //angular displacement
-	    required int32 movement_intensity = 6; //force
+	    required float displacement_x = 1;
+	    required float displacement_y = 2;
+	    required float displacement_theta = 3;
 	    required Kick kick = 7;
 	    optional int32 future_x = 8;
 	    optional int32 future_y = 9;
-    }	
+    }
 
     repeated Robot robots = 1;
 	required int32 team = 2; //0 or 1
 }
-
