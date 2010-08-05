@@ -16,8 +16,6 @@ void makeAIToGUI(RoboPET_WrapperPacket &packet)
     AIToGUI::Ball *b = aitogui->mutable_ball();
     b->set_x(1000);
     b->set_y(1000);
-    b->set_past_x(1);
-    b->set_past_y(2);
 
     AIToGUI::Robot *p1 = aitogui->add_blue_robots();
     p1->set_current_x(500);
@@ -26,8 +24,6 @@ void makeAIToGUI(RoboPET_WrapperPacket &packet)
     p1->set_future_x(5000);
     p1->set_future_y(5000);
     p1->set_future_theta(30);
-    p1->set_past_x(500);
-    p1->set_past_y(500);
 
     AIToGUI::Robot *p2 = aitogui->add_yellow_robots();
     p2->set_current_x(500);
@@ -36,8 +32,6 @@ void makeAIToGUI(RoboPET_WrapperPacket &packet)
     p2->set_future_x(5000);
     p2->set_future_y(500);
     p2->set_future_theta(0);
-    p2->set_past_x(500);
-    p2->set_past_y(500);
 
     AIToGUI::Robot *p3 = aitogui->add_blue_robots();
     p3->set_current_x(1000);
@@ -46,8 +40,6 @@ void makeAIToGUI(RoboPET_WrapperPacket &packet)
     p3->set_future_x(1000);
     p3->set_future_y(2700);
     p3->set_future_theta(30);
-    p3->set_past_x(500);
-    p3->set_past_y(500);
 
     AIToGUI::Robot *p4 = aitogui->add_yellow_robots();
     p4->set_current_x(6000);
@@ -56,8 +48,6 @@ void makeAIToGUI(RoboPET_WrapperPacket &packet)
     p4->set_future_x(6000);
     p4->set_future_y(2700);
     p4->set_future_theta(30);
-    p4->set_past_x(500);
-    p4->set_past_y(500);
     
 }
 
@@ -109,7 +99,7 @@ void makeSimToTracker(RoboPET_WrapperPacket &packet) {
 void makeAIToTracker(RoboPET_WrapperPacket &packet) {
 	AIToTracker* aitotracker = packet.mutable_aitotracker();
 	
-	aitotracker->set_nada(1);
+	
 }
 
 void makeRadioToTracker(RoboPET_WrapperPacket &packet){
@@ -129,10 +119,13 @@ void sslServer(int port=8100, char* hostname=(char*)"localhost")
 	RoboPET_WrapperPacket packet;
 
     makeAIToGUI(packet);
-    makeTrackerToAI(packet);
-    makeSimToTracker(packet);
+    //makeAIToRadio(packet);
     makeAIToTracker(packet);
+    //makeGUIToAI(packet);
+    //makeRadioToSim(packet);
     makeRadioToTracker(packet);
+    makeSimToTracker(packet);
+    makeTrackerToAI(packet);
 
 	/*
 	 GUIToAI *guitoai = packet.mutable_guitoai();
