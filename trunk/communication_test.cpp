@@ -51,6 +51,50 @@ void makeAIToGUI(RoboPET_WrapperPacket &packet)
     
 }
 
+void makeAIToRadio(RoboPET_WrapperPacket &packet) {
+}
+
+
+void makeAIToTracker(RoboPET_WrapperPacket &packet) {
+	AIToTracker* aitotracker = packet.mutable_aitotracker();
+	
+	
+}
+
+void makeGUIToAI(RoboPET_WrapperPacket &packet) {
+}
+
+void makeRadioToSim(RoboPET_WrapperPacket &packet){
+}
+
+
+void makeRadioToTracker(RoboPET_WrapperPacket &packet){
+	RadioToTracker* radiototracker = packet.mutable_radiototracker();
+	
+	radiototracker->set_nada(1);
+}
+
+
+void makeSimToTracker(RoboPET_WrapperPacket &packet) {
+	SimToTracker* simtotracker = packet.mutable_simtotracker();
+	
+	SimToTracker::Ball *b = simtotracker->mutable_ball();
+	b->set_x(1000);
+	b->set_y(1000);
+	
+	for(int i=0; i < 5; i++) {
+		SimToTracker::Robot *r = simtotracker->add_blue_robots();
+        r->set_x(i*100);
+        r->set_y(i*100);
+        r->set_theta(i*10);
+        
+        r = simtotracker->add_yellow_robots();
+        r->set_x(i*100);
+        r->set_y(i*100);
+        r->set_theta(i*10);
+	}
+}
+
 void makeTrackerToAI(RoboPET_WrapperPacket &packet)
 {
     TrackerToAI* trackertoai = packet.mutable_trackertoai();
@@ -76,53 +120,27 @@ void makeTrackerToAI(RoboPET_WrapperPacket &packet)
 
 }
 
-void makeSimToTracker(RoboPET_WrapperPacket &packet) {
-	SimToTracker* simtotracker = packet.mutable_simtotracker();
-	
-	SimToTracker::Ball *b = simtotracker->mutable_ball();
-	b->set_x(1000);
-	b->set_y(1000);
-	
-	for(int i=0; i < 5; i++) {
-		SimToTracker::Robot *r = simtotracker->add_blue_robots();
-        r->set_x(i*100);
-        r->set_y(i*100);
-        r->set_theta(i*10);
-        
-        r = simtotracker->add_yellow_robots();
-        r->set_x(i*100);
-        r->set_y(i*100);
-        r->set_theta(i*10);
-	}
-}
-
-void makeAIToTracker(RoboPET_WrapperPacket &packet) {
-	AIToTracker* aitotracker = packet.mutable_aitotracker();
-	
-	
-}
-
-void makeRadioToTracker(RoboPET_WrapperPacket &packet){
-	RadioToTracker* radiototracker = packet.mutable_radiototracker();
-	
-	radiototracker->set_nada(1);
-}
 
 void sslServer(int port=8100, char* hostname=(char*)"localhost")
 {
 	printf("Using port %i and host %s\n", port, hostname);
 	RoboPETServer server(port, hostname);
-	RoboPETServer simtotracker(PORT_SIM_TO_TRACKER, "localhost");
-	RoboPETServer aitotracker(PORT_AI_TO_TRACKER, "localhost");
-	RoboPETServer radiototracker(PORT_RADIO_TO_TRACKER, "localhost");
-	RoboPETServer aitogui(PORT_AI_TO_GUI, "localhost");
+	RoboPETServer aitogui(PORT_AI_TO_GUI, IP_AI_TO_GUI);
+	RoboPETServer aitoradio(PORT_AI_TO_RADIO, IP_AI_TO_RADIO);
+	RoboPETServer aitotracker(PORT_AI_TO_TRACKER, IP_AI_TO_TRACKER);
+	RoboPETServer guitoai(PORT_GUI_TO_AI, IP_GUI_TO_AI);
+	RoboPETServer radiotosim(PORT_RADIO_TO_SIM, IP_RADIO_TO_SIM);
+	RoboPETServer radiototracker(PORT_RADIO_TO_TRACKER, IP_RADIO_TO_TRACKER);
+	RoboPETServer simtotracker(PORT_SIM_TO_TRACKER, IP_SIM_TO_TRACKER);
+	RoboPETServer trackertoai(PORT_TRACKER_TO_AI, IP_TRACKER_TO_AI);
+	
 	RoboPET_WrapperPacket packet;
 
     makeAIToGUI(packet);
-    //makeAIToRadio(packet);
+    makeAIToRadio(packet);
     makeAIToTracker(packet);
-    //makeGUIToAI(packet);
-    //makeRadioToSim(packet);
+    makeGUIToAI(packet);
+    makeRadioToSim(packet);
     makeRadioToTracker(packet);
     makeSimToTracker(packet);
     makeTrackerToAI(packet);
@@ -136,10 +154,17 @@ void sslServer(int port=8100, char* hostname=(char*)"localhost")
 	getchar();
 
 	server.open();
-	simtotracker.open();
-	aitotracker.open();
-	radiototracker.open();
 	aitogui.open();
+	aitoradio.open();
+	aitotracker.open();
+	guitoai.open();
+	radiotosim.open();
+	radiototracker.open();
+	simtotracker.open();
+	trackertoai.open();
+	
+	
+	
 
 	while(true) {
 
