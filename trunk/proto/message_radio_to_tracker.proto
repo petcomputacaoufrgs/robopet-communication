@@ -1,6 +1,7 @@
 /* Radio to Tracker */
 
+/* We'll want to send the feedback given by the robots */
+
 message RadioToTracker {
 	required int32 nada = 1;
 }
-
