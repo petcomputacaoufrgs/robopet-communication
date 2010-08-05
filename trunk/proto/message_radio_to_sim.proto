@@ -9,6 +9,7 @@ message RadioToSim {
 	    required float force_y = 2;
 	    required int32 displacement_theta = 3;
 	    required int32 kick = 4; // bool
+		required int32 drible = 5; // bool
     }
 
     repeated Robot robots = 1;
