@@ -10,8 +10,8 @@
 
 #define MAX_ROBOTS 5
 
-void makeAIToGUI(RoboPET_WrapperPacket &packet)
-{
+void makeAIToGUI(RoboPET_WrapperPacket &packet) {
+	
     AIToGUI *aitogui = packet.mutable_aitogui();
     AIToGUI::Ball *b = aitogui->mutable_ball();
     b->set_x(1000);
@@ -52,23 +52,61 @@ void makeAIToGUI(RoboPET_WrapperPacket &packet)
 }
 
 void makeAIToRadio(RoboPET_WrapperPacket &packet) {
+	
+	AIToRadio *aitoradio = packet.mutable_aitoradio();
+	
+	for(int i=0; i < 5; i++) {
+		AIToRadio::Robot *r = aitoradio->add_robots();
+       	r->set_displacement_x(i*100);
+		r->set_displacement_y(i*150);
+		r->set_displacement_theta(i*10);
+		r->set_drible(1);
+		r->set_kick(0);
+		r->set_id(i);
+	}
 }
 
 
 void makeAIToTracker(RoboPET_WrapperPacket &packet) {
+	
 	AIToTracker* aitotracker = packet.mutable_aitotracker();
 	
-	
+	for(int i=0; i < 5; i++) {
+		AIToTracker::Robot *r = aitotracker->add_robots();
+       	r->set_displacement_x(i*100);
+		r->set_displacement_y(i*150);
+		r->set_displacement_theta(i*10);
+		r->set_drible(1);
+		r->set_kick(0);
+		r->set_id(i);
+	}
 }
 
 void makeGUIToAI(RoboPET_WrapperPacket &packet) {
+	
+	GUIToAI *guitoai = packet.mutable_guitoai();
+	
+	guitoai->set_nada(1);
 }
 
-void makeRadioToSim(RoboPET_WrapperPacket &packet){
+void makeRadioToSim(RoboPET_WrapperPacket &packet) {
+	
+	RadioToSim *radiotosim = packet.mutable_radiotosim();
+	radiotosim->set_team(0);
+	
+	for(int i=0; i < 5; i++) {
+		RadioToSim::Robot *r = radiotosim->add_robots();
+       	r->set_force_x(i*100);
+		r->set_force_y(i*150);
+		r->set_displacement_theta(i*10);
+		r->set_kick(0);
+		r->set_drible(1);
+	}
 }
 
 
-void makeRadioToTracker(RoboPET_WrapperPacket &packet){
+void makeRadioToTracker(RoboPET_WrapperPacket &packet) {
+	
 	RadioToTracker* radiototracker = packet.mutable_radiototracker();
 	
 	radiototracker->set_nada(1);
@@ -76,6 +114,7 @@ void makeRadioToTracker(RoboPET_WrapperPacket &packet){
 
 
 void makeSimToTracker(RoboPET_WrapperPacket &packet) {
+	
 	SimToTracker* simtotracker = packet.mutable_simtotracker();
 	
 	SimToTracker::Ball *b = simtotracker->mutable_ball();
@@ -87,11 +126,13 @@ void makeSimToTracker(RoboPET_WrapperPacket &packet) {
         r->set_x(i*100);
         r->set_y(i*100);
         r->set_theta(i*10);
+        r->set_id(i);
         
         r = simtotracker->add_yellow_robots();
         r->set_x(i*100);
         r->set_y(i*100);
         r->set_theta(i*10);
+        r->set_id(i);
 	}
 }
 
@@ -116,8 +157,6 @@ void makeTrackerToAI(RoboPET_WrapperPacket &packet)
         r->set_theta(i*10);
         r->set_id(i);
     }
-
-
 }
 
 
@@ -162,9 +201,6 @@ void sslServer(int port=8100, char* hostname=(char*)"localhost")
 	radiototracker.open();
 	simtotracker.open();
 	trackertoai.open();
-	
-	
-	
 
 	while(true) {
 
@@ -184,11 +220,15 @@ void sslServer(int port=8100, char* hostname=(char*)"localhost")
 				radiototracker.send(packet);
 				aitogui.send(packet);
 			}*/
-			server.send(packet);
-			simtotracker.send(packet);
-			aitotracker.send(packet);
-			radiototracker.send(packet);
-			aitogui.send(packet);
+				server.send(packet);
+				aitogui.send(packet);
+				aitoradio.send(packet);
+				aitotracker.send(packet);
+				guitoai.send(packet);
+				radiotosim.send(packet);
+				radiototracker.send(packet);
+				simtotracker.send(packet);
+				trackertoai.send(packet);
 	}
 }
 
@@ -203,15 +243,35 @@ void sslClient(int port=8100, char* hostname=(char*)"localhost")
 	while(true) {
 		//printf(".");
 		if (client.receive(packet)) {
-			printf("----------------------------\n");
-			printf("TestClient Received ");
+			printf("||||||||||||||||||||||||||||\n");
+			printf("TestClient Received\n");
 			if (packet.has_aitogui())
 			{
 				printf("AI-To-GUI!\n");
 			}
+			if (packet.has_aitoradio())
+			{
+				printf("AI-To-Radio!\n");
+			}
+			if (packet.has_aitotracker())
+			{
+				printf("AI-To-Tracker!\n");
+			}
 			if (packet.has_guitoai())
 			{
 				printf("GUI-To-AI!\n");
+			}
+			if (packet.has_radiotosim())
+			{
+				printf("Radio-To-Sim!\n");
+			}
+			if (packet.has_radiototracker())
+			{
+				printf("Radio-To-Tracker!\n");
+			}
+			if (packet.has_simtotracker())
+			{
+				printf("Sim-To-Tracker!\n");
 			}
 			if (packet.has_trackertoai())
 			{
@@ -227,29 +287,6 @@ void sslClient(int port=8100, char* hostname=(char*)"localhost")
 											packet.trackertoai().yellow_robots(i).x(),
 											packet.trackertoai().yellow_robots(i).y());
 			}
-			if (packet.has_aitoradio())
-			{
-				printf("AI-To-Radio!\n");
-			}
-			if (packet.has_radiotosim())
-			{
-				printf("Radio-To-Sim!\n");
-			}
-			if (packet.has_aitotracker())
-			{
-				printf("AI-To-Tracker!\n");
-			}
-			if (packet.has_simtotracker())
-			{
-				printf("Sim-To-Tracker!\n");
-			}
-			if (packet.has_radiototracker())
-			{
-				printf("Radio-To-Tracker!\n");
-			}
-		} else if(client.receive(str)) {
-		    printf("Vision-To-Tracker!\n");
-		    printf("<|%s|>\n", str.c_str());
 		}
 	}
 }

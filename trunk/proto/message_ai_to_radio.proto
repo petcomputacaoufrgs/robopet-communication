@@ -2,7 +2,7 @@
 
 message AIToRadio {
     message Robot {
-    	// position and angle displacements are int because we don't need more precision than milimeters/degree
+    	// position/angle displacements are int because we don't need more precision than milimeters/degree
 	    required int32 displacement_x = 1;
 	    required int32 displacement_y = 2;
 	    required int32 displacement_theta = 3;
