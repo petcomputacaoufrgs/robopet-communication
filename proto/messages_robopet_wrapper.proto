@@ -2,12 +2,12 @@
 
 import "message_ai_to_gui.proto";
 import "message_ai_to_radio.proto";
-import "message_radio_to_sim.proto";
+import "message_ai_to_tracker.proto";
 import "message_gui_to_ai.proto";
+import "message_radio_to_sim.proto";
+import "message_radio_to_tracker.proto";
 import "message_sim_to_tracker.proto";
 import "message_tracker_to_ai.proto";
-import "message_ai_to_tracker.proto";
-import "message_radio_to_tracker.proto";
 
 message RoboPET_WrapperPacket {
   /* Should be the same of SSL */
@@ -18,10 +18,10 @@ message RoboPET_WrapperPacket {
 */
   optional AIToGUI aiToGui = 4;
   optional AIToRadio aiToRadio = 5;
-  optional RadioToSim RadioToSim = 6;
+  optional AIToTracker aiToTracker = 6;
   optional GUIToAI guiToAi = 7;
-  optional SimToTracker simToTracker = 8;
-  optional TrackerToAI trackerToAi = 9;
-  optional AIToTracker aiToTracker = 10;
-  optional RadioToTracker radioToTracker = 11;
+  optional RadioToSim radioToSim = 8;
+  optional RadioToTracker radioToTracker = 9;
+  optional SimToTracker simToTracker = 10;
+  optional TrackerToAI trackerToAi = 11;
 }
