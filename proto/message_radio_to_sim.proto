@@ -12,6 +12,6 @@ message RadioToSim {
 		required int32 drible = 5; // bool
     }
 
-    repeated Robot robots = 1;
-	required int32 team = 2; //0 or 1
+	repeated Robot blue_robots = 1;
+	repeated Robot yellow_robots = 2;
 }
