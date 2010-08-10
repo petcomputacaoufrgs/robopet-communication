@@ -92,15 +92,21 @@ void makeGUIToAI(RoboPET_WrapperPacket &packet) {
 void makeRadioToSim(RoboPET_WrapperPacket &packet) {
 	
 	RadioToSim *radiotosim = packet.mutable_radiotosim();
-	radiotosim->set_team(0);
+	//radiotosim->set_team(0);
 	
 	for(int i=0; i < 5; i++) {
-		RadioToSim::Robot *r = radiotosim->add_robots();
-       	r->set_force_x(i*100);
-		r->set_force_y(i*150);
-		r->set_displacement_theta(i*10);
-		r->set_kick(0);
-		r->set_drible(1);
+		RadioToSim::Robot *r1 = radiotosim->add_yellow_robots();
+       	r1->set_force_x(i*100);
+		r1->set_force_y(i*150);
+		r1->set_displacement_theta(i*10);
+		r1->set_kick(0);
+		r1->set_drible(1);
+		RadioToSim::Robot *r2 = radiotosim->add_blue_robots();
+       	r2->set_force_x(i*100);
+		r2->set_force_y(i*150);
+		r2->set_displacement_theta(i*10);
+		r2->set_kick(0);
+		r2->set_drible(1);
 	}
 }
 
