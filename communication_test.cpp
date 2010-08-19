@@ -11,7 +11,7 @@
 #define MAX_ROBOTS 5
 
 void makeAIToGUI(RoboPET_WrapperPacket &packet) {
-	
+
     AIToGUI *aitogui = packet.mutable_aitogui();
     AIToGUI::Ball *b = aitogui->mutable_ball();
     b->set_x(1000);
@@ -48,13 +48,13 @@ void makeAIToGUI(RoboPET_WrapperPacket &packet) {
     p4->set_future_x(6000);
     p4->set_future_y(2700);
     p4->set_future_theta(30);
-    
+
 }
 
 void makeAIToRadio(RoboPET_WrapperPacket &packet) {
-	
+
 	AIToRadio *aitoradio = packet.mutable_aitoradio();
-	
+
 	for(int i=0; i < 5; i++) {
 		AIToRadio::Robot *r = aitoradio->add_robots();
        	r->set_displacement_x(i*100);
@@ -68,9 +68,9 @@ void makeAIToRadio(RoboPET_WrapperPacket &packet) {
 
 
 void makeAIToTracker(RoboPET_WrapperPacket &packet) {
-	
+
 	AIToTracker* aitotracker = packet.mutable_aitotracker();
-	
+
 	for(int i=0; i < 5; i++) {
 		AIToTracker::Robot *r = aitotracker->add_robots();
        	r->set_displacement_x(i*100);
@@ -83,28 +83,28 @@ void makeAIToTracker(RoboPET_WrapperPacket &packet) {
 }
 
 void makeGUIToAI(RoboPET_WrapperPacket &packet) {
-	
+
 	GUIToAI *guitoai = packet.mutable_guitoai();
-	
+
 	guitoai->set_nada(1);
 }
 
 void makeRadioToSim(RoboPET_WrapperPacket &packet) {
-	
+
 	RadioToSim *radiotosim = packet.mutable_radiotosim();
 	//radiotosim->set_team(0);
-	
+
 	for(int i=0; i < 5; i++) {
 		RadioToSim::Robot *r1 = radiotosim->add_yellow_robots();
-       	r1->set_force_x(i*100);
-		r1->set_force_y(i*150);
-		r1->set_displacement_theta(i*10);
+       	r1->set_force_x((i+1)*100000 - (i+1)*100000*2);
+		r1->set_force_y((i+1)*100000 - (i+1)*100000*2);
+		r1->set_displacement_theta(i);
 		r1->set_kick(0);
 		r1->set_drible(1);
 		RadioToSim::Robot *r2 = radiotosim->add_blue_robots();
-       	r2->set_force_x(i*100);
-		r2->set_force_y(i*150);
-		r2->set_displacement_theta(i*10);
+       	r2->set_force_x((i+1)*100000 - (i+1)*100000*2);
+		r2->set_force_y((i+1)*100000 - (i+1)*100000*2);
+		r2->set_displacement_theta(i);
 		r2->set_kick(0);
 		r2->set_drible(1);
 	}
@@ -112,28 +112,28 @@ void makeRadioToSim(RoboPET_WrapperPacket &packet) {
 
 
 void makeRadioToTracker(RoboPET_WrapperPacket &packet) {
-	
+
 	RadioToTracker* radiototracker = packet.mutable_radiototracker();
-	
+
 	radiototracker->set_nada(1);
 }
 
 
 void makeSimToTracker(RoboPET_WrapperPacket &packet) {
-	
+
 	SimToTracker* simtotracker = packet.mutable_simtotracker();
-	
+
 	SimToTracker::Ball *b = simtotracker->mutable_ball();
 	b->set_x(1000);
 	b->set_y(1000);
-	
+
 	for(int i=0; i < 5; i++) {
 		SimToTracker::Robot *r = simtotracker->add_blue_robots();
         r->set_x(i*100);
         r->set_y(i*100);
         r->set_theta(i*10);
         r->set_id(i);
-        
+
         r = simtotracker->add_yellow_robots();
         r->set_x(i*100);
         r->set_y(i*100);
@@ -145,7 +145,7 @@ void makeSimToTracker(RoboPET_WrapperPacket &packet) {
 void makeTrackerToAI(RoboPET_WrapperPacket &packet)
 {
     TrackerToAI* trackertoai = packet.mutable_trackertoai();
-    
+
     TrackerToAI::Ball *b = trackertoai->mutable_ball();
     b->set_x(1000);
     b->set_y(1000);
@@ -156,7 +156,7 @@ void makeTrackerToAI(RoboPET_WrapperPacket &packet)
         r->set_y(i*100);
         r->set_theta(i*10);
         r->set_id(i);
-        
+
         r = trackertoai->add_yellow_robots();
         r->set_x(i*100);
         r->set_y(i*100);
@@ -178,7 +178,7 @@ void sslServer(int port=8100, char* hostname=(char*)"localhost")
 	RoboPETServer radiototracker(PORT_RADIO_TO_TRACKER, IP_RADIO_TO_TRACKER);
 	RoboPETServer simtotracker(PORT_SIM_TO_TRACKER, IP_SIM_TO_TRACKER);
 	RoboPETServer trackertoai(PORT_TRACKER_TO_AI, IP_TRACKER_TO_AI);
-	
+
 	RoboPET_WrapperPacket packet;
 
     makeAIToGUI(packet);
