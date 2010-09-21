@@ -231,7 +231,7 @@ void sslServer(int port=8100, char* hostname=(char*)"localhost")
 				aitoradio.send(packet);
 				aitotracker.send(packet);
 				guitoai.send(packet);
-				radiotosim.send(packet);
+				//radiotosim.send(packet);
 				radiototracker.send(packet);
 				simtotracker.send(packet);
 				trackertoai.send(packet);
