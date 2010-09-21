@@ -10,6 +10,9 @@
 
 #define MAX_ROBOTS 5
 
+int team_id;
+
+
 void makeAIToGUI(RoboPET_WrapperPacket &packet) {
 
     AIToGUI *aitogui = packet.mutable_aitogui();
@@ -92,21 +95,15 @@ void makeGUIToAI(RoboPET_WrapperPacket &packet) {
 void makeRadioToSim(RoboPET_WrapperPacket &packet) {
 
 	RadioToSim *radiotosim = packet.mutable_radiotosim();
-	//radiotosim->set_team(0);
+	radiotosim->set_team_id(team_id);
 
 	for(int i=0; i < 5; i++) {
-		RadioToSim::Robot *r1 = radiotosim->add_yellow_robots();
+		RadioToSim::Robot *r1 = radiotosim->add_robots();
        	r1->set_force_x((i+1)*100000 - (i+1)*100000*2);
 		r1->set_force_y((i+1)*100000 - (i+1)*100000*2);
 		r1->set_displacement_theta(i);
 		r1->set_kick(0);
 		r1->set_drible(1);
-		RadioToSim::Robot *r2 = radiotosim->add_blue_robots();
-       	r2->set_force_x((i+1)*100000 - (i+1)*100000*2);
-		r2->set_force_y((i+1)*100000 - (i+1)*100000*2);
-		r2->set_displacement_theta(i);
-		r2->set_kick(0);
-		r2->set_drible(1);
 	}
 }
 
@@ -227,11 +224,11 @@ void sslServer(int port=8100, char* hostname=(char*)"localhost")
 				aitogui.send(packet);
 			}*/
 				server.send(packet);
-				aitogui.send(packet);
+				//aitogui.send(packet);
 				aitoradio.send(packet);
 				aitotracker.send(packet);
 				guitoai.send(packet);
-				//radiotosim.send(packet);
+				radiotosim.send(packet);
 				radiototracker.send(packet);
 				simtotracker.send(packet);
 				trackertoai.send(packet);

@@ -10,6 +10,7 @@ message RadioToSim {
 	    required int32 displacement_theta = 3;
 	    required int32 kick = 4; // bool
 		required int32 drible = 5; // bool
+		required int32 id = 6;
     }
 
 	repeated Robot robots = 1;
