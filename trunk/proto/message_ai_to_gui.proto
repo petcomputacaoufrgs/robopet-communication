@@ -19,9 +19,12 @@ message AIToGUI {
 	    required int32 future_x = 4;
 	    required int32 future_y = 5;
 	    required int32 future_theta = 6;
+
+	    required int32 id = 7;
     }
 
 	repeated Robot blue_robots = 1;
 	repeated Robot yellow_robots = 2;
 	required Ball ball = 3;
 }
+
