@@ -27,6 +27,7 @@ void makeAIToGUI(RoboPET_WrapperPacket &packet) {
     p1->set_future_x(5000);
     p1->set_future_y(5000);
     p1->set_future_theta(30);
+    p1->set_id(0);
 
     AIToGUI::Robot *p2 = aitogui->add_yellow_robots();
     p2->set_current_x(500);
@@ -35,6 +36,7 @@ void makeAIToGUI(RoboPET_WrapperPacket &packet) {
     p2->set_future_x(5000);
     p2->set_future_y(500);
     p2->set_future_theta(0);
+    p1->set_id(1);
 
     AIToGUI::Robot *p3 = aitogui->add_blue_robots();
     p3->set_current_x(1000);
@@ -43,6 +45,7 @@ void makeAIToGUI(RoboPET_WrapperPacket &packet) {
     p3->set_future_x(1000);
     p3->set_future_y(2700);
     p3->set_future_theta(30);
+    p1->set_id(2);
 
     AIToGUI::Robot *p4 = aitogui->add_yellow_robots();
     p4->set_current_x(6000);
@@ -51,6 +54,7 @@ void makeAIToGUI(RoboPET_WrapperPacket &packet) {
     p4->set_future_x(6000);
     p4->set_future_y(2700);
     p4->set_future_theta(30);
+    p1->set_id(4);
 
 }
 
@@ -223,14 +227,14 @@ void sslServer(int port=8100, char* hostname=(char*)"localhost")
 				radiototracker.send(packet);
 				aitogui.send(packet);
 			}*/
-				server.send(packet);
-				//aitogui.send(packet);
+				/*server.send(packet);
+				aitogui.send(packet);
 				aitoradio.send(packet);
 				aitotracker.send(packet);
 				guitoai.send(packet);
 				radiotosim.send(packet);
 				radiototracker.send(packet);
-				simtotracker.send(packet);
+				simtotracker.send(packet);*/
 				trackertoai.send(packet);
 	}
 }
