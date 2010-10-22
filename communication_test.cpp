@@ -227,14 +227,14 @@ void sslServer(int port=8100, char* hostname=(char*)"localhost")
 				radiototracker.send(packet);
 				aitogui.send(packet);
 			}*/
-				/*server.send(packet);
+				server.send(packet);
 				aitogui.send(packet);
 				aitoradio.send(packet);
 				aitotracker.send(packet);
 				guitoai.send(packet);
 				radiotosim.send(packet);
 				radiototracker.send(packet);
-				simtotracker.send(packet);*/
+				simtotracker.send(packet);
 				trackertoai.send(packet);
 	}
 }
