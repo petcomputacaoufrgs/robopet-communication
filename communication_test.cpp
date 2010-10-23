@@ -36,7 +36,7 @@ void makeAIToGUI(RoboPET_WrapperPacket &packet) {
     p2->set_future_x(5000);
     p2->set_future_y(500);
     p2->set_future_theta(0);
-    p1->set_id(1);
+    p2->set_id(1);
 
     AIToGUI::Robot *p3 = aitogui->add_blue_robots();
     p3->set_current_x(1000);
@@ -45,7 +45,7 @@ void makeAIToGUI(RoboPET_WrapperPacket &packet) {
     p3->set_future_x(1000);
     p3->set_future_y(2700);
     p3->set_future_theta(30);
-    p1->set_id(2);
+    p3->set_id(2);
 
     AIToGUI::Robot *p4 = aitogui->add_yellow_robots();
     p4->set_current_x(6000);
@@ -54,7 +54,7 @@ void makeAIToGUI(RoboPET_WrapperPacket &packet) {
     p4->set_future_x(6000);
     p4->set_future_y(2700);
     p4->set_future_theta(30);
-    p1->set_id(4);
+    p4->set_id(4);
 
 }
 
@@ -108,6 +108,7 @@ void makeRadioToSim(RoboPET_WrapperPacket &packet) {
 		r1->set_displacement_theta(i);
 		r1->set_kick(0);
 		r1->set_drible(1);
+		r1->set_id(i);
 	}
 }
 
@@ -188,8 +189,8 @@ void sslServer(int port=8100, char* hostname=(char*)"localhost")
     makeGUIToAI(packet);
     makeRadioToSim(packet);
     makeRadioToTracker(packet);
-    makeSimToTracker(packet);
     makeTrackerToAI(packet);
+    makeSimToTracker(packet);
 
 	/*
 	 GUIToAI *guitoai = packet.mutable_guitoai();
@@ -227,15 +228,20 @@ void sslServer(int port=8100, char* hostname=(char*)"localhost")
 				radiototracker.send(packet);
 				aitogui.send(packet);
 			}*/
-				server.send(packet);
-				aitogui.send(packet);
-				aitoradio.send(packet);
+			/*
+				
+				trackertoai.send(packet); 
+				simtotracker.send(packet);
 				aitotracker.send(packet);
 				guitoai.send(packet);
 				radiotosim.send(packet);
 				radiototracker.send(packet);
-				simtotracker.send(packet);
-				trackertoai.send(packet);
+				aitoradio.send(packet);
+				trackertoai.send(packet); 
+				aitogui.send(packet);
+			 */
+			    server.send(packet);
+				
 	}
 }
 
@@ -321,6 +327,6 @@ int main(int argc, char **argv)
 	if(server) {
 		sslServer(port);
 	} else {
-		sslClient(port, hostname);
+		sslClient(port/*, hostname*/);
 	}
 }
