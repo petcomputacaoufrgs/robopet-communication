@@ -9,6 +9,7 @@ message AIToRadio {
 	    required int32 drible = 4; // bool
 	    required int32 kick = 5; //bool
 	    required int32 id = 6;
+		required int32 current_theta = 7; 
     }
 
     repeated Robot robots = 1;
