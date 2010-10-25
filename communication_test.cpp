@@ -308,7 +308,7 @@ int main(int argc, char **argv)
 {
 	char ch;
 	int port = 8100;
-	char *hostname = (char*) "143.54.12.150"; //insira aqui o IP da máquina
+	char *hostname = (char*) "localhost"; //insira aqui o IP da máquina
 
 	bool server = false;
 	bool client = false;
