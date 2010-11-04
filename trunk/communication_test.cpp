@@ -70,6 +70,7 @@ void makeAIToRadio(RoboPET_WrapperPacket &packet) {
 		r->set_drible(1);
 		r->set_kick(0);
 		r->set_id(i);
+		r->set_current_theta(0);
 	}
 }
 
@@ -229,19 +230,21 @@ void sslServer(int port=8100, char* hostname=(char*)"localhost")
 				aitogui.send(packet);
 			}*/
 			/*
-				
-				trackertoai.send(packet); 
+
+				trackertoai.send(packet);
 				simtotracker.send(packet);
 				aitotracker.send(packet);
 				guitoai.send(packet);
 				radiotosim.send(packet);
 				radiototracker.send(packet);
-				aitoradio.send(packet);
-				trackertoai.send(packet); 
+
+				trackertoai.send(packet);
 				aitogui.send(packet);
 			 */
-			    server.send(packet);
-				
+
+aitoradio.send(packet);
+			    //server.send(packet);
+
 	}
 }
 
