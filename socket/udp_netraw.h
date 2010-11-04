@@ -90,6 +90,7 @@ public:
     {return(fd);}
 };
 
-}; // namespace Net
+} // namespace Net
 
 #endif
+
