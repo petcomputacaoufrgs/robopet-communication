@@ -6,6 +6,7 @@ enum {
 	PORT_AI_TO_RADIO,
 	PORT_AI_TO_TRACKER,
 	PORT_GUI_TO_AI,
+	PORT_JOY_TO_RADIO,
 	PORT_RADIO_TO_SIM,
 	PORT_RADIO_TO_TRACKER,
 	PORT_SIM_TO_TRACKER,
@@ -16,6 +17,7 @@ enum {
 #define IP_AI_TO_RADIO "localhost"
 #define IP_AI_TO_TRACKER "localhost"
 #define IP_GUI_TO_AI "localhost"
+#define IP_JOY_TO_RADIO "localhost"
 #define IP_RADIO_TO_SIM "localhost"
 #define IP_RADIO_TO_TRACKER "localhost"
 #define IP_SIM_TO_TRACKER "localhost"

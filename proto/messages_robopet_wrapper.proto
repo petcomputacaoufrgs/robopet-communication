@@ -8,6 +8,7 @@ import "message_radio_to_sim.proto";
 import "message_radio_to_tracker.proto";
 import "message_sim_to_tracker.proto";
 import "message_tracker_to_ai.proto";
+import "message_joy_to_radio.proto";
 
 message RoboPET_WrapperPacket {
   /* Should be the same of SSL */
@@ -24,4 +25,5 @@ message RoboPET_WrapperPacket {
   optional RadioToTracker radioToTracker = 9;
   optional SimToTracker simToTracker = 10;
   optional TrackerToAI trackerToAi = 11;
+  optional JoyToRadio joyToRadio = 12;
 }

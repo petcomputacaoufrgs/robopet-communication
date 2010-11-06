@@ -8,8 +8,9 @@ message AIToRadio {
 	    required int32 displacement_theta = 3;
 	    required int32 drible = 4; // bool
 	    required int32 kick = 5; //bool
-	    required int32 id = 6;
-		required int32 current_theta = 7; 
+	    required int32 chip_kick = 6; //bool
+	    required int32 id = 7;
+		required int32 current_theta = 8;
     }
 
     repeated Robot robots = 1;

@@ -69,6 +69,7 @@ void makeAIToRadio(RoboPET_WrapperPacket &packet) {
 		r->set_displacement_theta(i*10);
 		r->set_drible(1);
 		r->set_kick(0);
+		r->set_chip_kick(0);
 		r->set_id(i);
 		r->set_current_theta(0);
 	}
@@ -95,6 +96,29 @@ void makeGUIToAI(RoboPET_WrapperPacket &packet) {
 	GUIToAI *guitoai = packet.mutable_guitoai();
 
 	guitoai->set_nada(1);
+}
+
+void makeJoyToRadio(RoboPET_WrapperPacket &packet) {
+	
+	JoyToRadio *joytoradio = packet.mutable_joytoradio();
+	AIToRadio *aitoradio = joytoradio->mutable_aitoradio();
+
+	for(int i=0; i < 5; i++) {
+		AIToRadio::Robot *r = aitoradio->add_robots();
+       	r->set_displacement_x(i*100);
+		r->set_displacement_y(i*150);
+		r->set_displacement_theta(i*10);
+		r->set_drible(1);
+		r->set_kick(0);
+		r->set_chip_kick(0);
+		r->set_id(i);
+		r->set_current_theta(0);
+	}
+	
+	joytoradio->set_force_0(0);
+	joytoradio->set_force_1(0);
+	joytoradio->set_force_2(0);
+	joytoradio->set_secret_attack(0);
 }
 
 void makeRadioToSim(RoboPET_WrapperPacket &packet) {
@@ -177,6 +201,7 @@ void sslServer(int port=8100, char* hostname=(char*)"localhost")
 	RoboPETServer aitoradio(PORT_AI_TO_RADIO, IP_AI_TO_RADIO);
 	RoboPETServer aitotracker(PORT_AI_TO_TRACKER, IP_AI_TO_TRACKER);
 	RoboPETServer guitoai(PORT_GUI_TO_AI, IP_GUI_TO_AI);
+	RoboPETServer joytoradio(PORT_JOY_TO_RADIO, IP_JOY_TO_RADIO);
 	RoboPETServer radiotosim(PORT_RADIO_TO_SIM, IP_RADIO_TO_SIM);
 	RoboPETServer radiototracker(PORT_RADIO_TO_TRACKER, IP_RADIO_TO_TRACKER);
 	RoboPETServer simtotracker(PORT_SIM_TO_TRACKER, IP_SIM_TO_TRACKER);
@@ -188,6 +213,7 @@ void sslServer(int port=8100, char* hostname=(char*)"localhost")
     makeAIToRadio(packet);
     makeAIToTracker(packet);
     makeGUIToAI(packet);
+    makeJoyToRadio(packet);
     makeRadioToSim(packet);
     makeRadioToTracker(packet);
     makeTrackerToAI(packet);
@@ -206,6 +232,7 @@ void sslServer(int port=8100, char* hostname=(char*)"localhost")
 	aitoradio.open();
 	aitotracker.open();
 	guitoai.open();
+	joytoradio.open();
 	radiotosim.open();
 	radiototracker.open();
 	simtotracker.open();
@@ -241,9 +268,8 @@ void sslServer(int port=8100, char* hostname=(char*)"localhost")
 				trackertoai.send(packet);
 				aitogui.send(packet);
 			 */
-
-aitoradio.send(packet);
-			    //server.send(packet);
+				joytoradio.send(packet);
+			    server.send(packet);
 
 	}
 }
@@ -276,6 +302,10 @@ void sslClient(int port=8100, char* hostname=(char*)"localhost")
 			if (packet.has_guitoai())
 			{
 				printf("GUI-To-AI!\n");
+			}
+			if (packet.has_joytoradio())
+			{
+				printf("Joy-To-Radio!\n");
 			}
 			if (packet.has_radiotosim())
 			{
