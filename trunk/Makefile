@@ -1,5 +1,5 @@
 ### VARIABLES ###
-CC = colorgcc
+CC = g++
 CFLAGS = -Wall -O2
 LFLAGS = -lprotobuf
 PACKETS_PATH = packets
