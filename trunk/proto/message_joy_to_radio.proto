@@ -1,0 +1,10 @@
+import "message_ai_to_radio.proto";
+
+message JoyToRadio {
+
+	required AIToRadio aiToRadio = 1;
+	required int32 force_0 = 2;
+	required int32 force_1 = 3;
+	required int32 force_2 = 4;
+	required int32 secret_attack = 5;
+}
