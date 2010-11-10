@@ -17,8 +17,8 @@ PROTOBUF_FILES_H = message_gui_to_ai.pb.h \
 				message_radio_to_sim.pb.h \
 				message_ai_to_tracker.pb.h \
 				message_radio_to_tracker.pb.h \
-				messages_robopet_wrapper.pb.h \
-				message_joy_to_radio.pb.h
+				message_joy_to_radio.pb.h \
+				messages_robopet_wrapper.pb.h
 
 PROTOBUF_FILES_O = $(PROTOBUF_FILES_H:.h=.o)
 PROTOBUF_FILES_CC = $(PROTOBUF_FILES_H:.h=.cc)
