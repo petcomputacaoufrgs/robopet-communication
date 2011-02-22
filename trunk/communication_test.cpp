@@ -240,36 +240,24 @@ void sslServer(int port=8100, char* hostname=(char*)"localhost")
 
 	while(true) {
 
-			/*for (int i=0; ; ++i)
+			for (int i=0; ; ++i)
 			{
+				usleep(500);
 				AIToGUI::Ball *b = packet.mutable_aitogui()->mutable_ball();
 				b->set_x(i%5000 + 100);
 	 			b->set_y(i%5000 + 100);
-				AIToGUI::Robot *p1 = packet.mutable_aitogui()->blue_robots(0);
-				p1->set_current_x(i%5000);
-	 			p1->set_current_y(i%5000);
-	 			p1->set_current_theta(i%360);
-				usleep(5000);
+	 			printf("%i\n",i%5000 + 100);
+				//AIToGUI::Robot *p1 = packet.mutable_aitogui()->blue_robots(0);
+				//p1->set_current_x(i%5000);
+	 			//p1->set_current_y(i%5000);
+	 			//p1->set_current_theta(i%360);
 				server.send(packet);
 				simtotracker.send(packet);
 				aitotracker.send(packet);
 				radiototracker.send(packet);
 				aitogui.send(packet);
-			}*/
-			/*
-
 				trackertoai.send(packet);
-				simtotracker.send(packet);
-				aitotracker.send(packet);
-				guitoai.send(packet);
-				radiotosim.send(packet);
-				radiototracker.send(packet);
-
-				trackertoai.send(packet);
-				aitogui.send(packet);
-			 */
-				joytoradio.send(packet);
-			    server.send(packet);
+			}
 
 	}
 }

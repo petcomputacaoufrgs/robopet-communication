@@ -110,6 +110,14 @@ bool UDP::open(int port, bool share_port_for_multicasting, bool multicast_includ
         fflush(stderr);
     }
   }
+  
+  
+  
+  // aqui setamos o tamanho do buffer para que nunca sobre pacotes, ou seja, não atrase!
+  // cuidado: qualquer modificação nos protocolos mudará o tamanho do pacote, e então
+  //  o tamanho do buffer deve ser ajustado.
+  int buffersize = 780;
+  printf("%i\n", setsockopt(fd, SOL_SOCKET, SO_RCVBUF, (const char*)&buffersize, sizeof(buffersize)) );
 
 
 
@@ -181,6 +189,8 @@ int UDP::recv(void *data,int length,Address &src)
 {
   src.addr_len = sizeof(src.addr);
   int len = recvfrom(fd,data,length,0,&src.addr,&src.addr_len);
+  
+  //printf("received packet size: %d\n",len);
 
   if(len > 0){
     recv_packets++;
