@@ -117,7 +117,8 @@ bool UDP::open(int port, bool share_port_for_multicasting, bool multicast_includ
   // cuidado: qualquer modificação nos protocolos mudará o tamanho do pacote, e então
   //  o tamanho do buffer deve ser ajustado.
   int buffersize = 780;
-  printf("%i\n", setsockopt(fd, SOL_SOCKET, SO_RCVBUF, (const char*)&buffersize, sizeof(buffersize)) );
+  if( setsockopt(fd, SOL_SOCKET, SO_RCVBUF, (const char*)&buffersize, sizeof(buffersize)) )
+	printf("Unable to set socket's buffer size.\n");
 
 
 
