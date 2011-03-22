@@ -95,7 +95,7 @@ void makeGUIToAI(RoboPET_WrapperPacket &packet) {
 
 	GUIToAI *guitoai = packet.mutable_guitoai();
 
-	guitoai->set_nada(1);
+	//guitoai->set_nada(1);
 }
 
 void makeJoyToRadio(RoboPET_WrapperPacket &packet) {

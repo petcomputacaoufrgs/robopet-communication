@@ -3,5 +3,17 @@
 /* Later we'll want to set AI states, for testing purposes */
 
 message GUIToAI {
-	required int32 nada = 1;
+    message Robot {
+    	// position/angle displacements are int because we don't need more precision than milimeters/degree
+	    required float displacement_x = 1;
+	    required float displacement_y = 2;
+	    required int32 displacement_theta = 3;
+	    required int32 drible = 4; // bool
+	    required int32 kick = 5; //bool
+	    required int32 chip_kick = 6; //bool
+	    required int32 id = 7;
+		required int32 current_theta = 8;
+    }
+
+    repeated Robot robots = 1;
 }
