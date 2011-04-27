@@ -5,10 +5,10 @@
 
 message AIToGUI {
 
-    message Ball {
-	    required int32 x = 1;
-	    required int32 y = 2;
-    }
+	message Point {
+		required int32 x = 1;
+		required int32 y = 2;
+	}
 
     message Robot {
 	    required int32 current_x = 1;
@@ -21,10 +21,12 @@ message AIToGUI {
 	    required int32 future_theta = 6;
 
 	    required int32 id = 7;
+
+		repeated Point path = 8;
     }
 
 	repeated Robot blue_robots = 1;
 	repeated Robot yellow_robots = 2;
-	required Ball ball = 3;
+	required Point ball = 3;
 }
 

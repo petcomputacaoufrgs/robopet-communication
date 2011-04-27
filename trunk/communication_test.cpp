@@ -16,7 +16,7 @@ int team_id;
 void makeAIToGUI(RoboPET_WrapperPacket &packet) {
 
     AIToGUI *aitogui = packet.mutable_aitogui();
-    AIToGUI::Ball *b = aitogui->mutable_ball();
+    AIToGUI::Point *b = aitogui->mutable_ball();
     b->set_x(1000);
     b->set_y(1000);
 
@@ -27,25 +27,28 @@ void makeAIToGUI(RoboPET_WrapperPacket &packet) {
     p1->set_future_x(5000);
     p1->set_future_y(5000);
     p1->set_future_theta(30);
-    p1->set_id(0);
+    p1->set_id(2);
+    
+    for(int i=1; i<13; i++) {
+		AIToGUI::Point *p = p1->add_path();
+		p->set_x(500+i*110);
+		p->set_y(500+i*40);
+	}
 
     AIToGUI::Robot *p2 = aitogui->add_yellow_robots();
-    p2->set_current_x(500);
-    p2->set_current_y(500);
+    p2->set_current_x(100);
+    p2->set_current_y(800);
     p2->set_current_theta(30);
     p2->set_future_x(5000);
     p2->set_future_y(500);
     p2->set_future_theta(0);
-    p2->set_id(1);
+    p2->set_id(5);
 
-    AIToGUI::Robot *p3 = aitogui->add_blue_robots();
-    p3->set_current_x(1000);
-    p3->set_current_y(2700);
-    p3->set_current_theta(30);
-    p3->set_future_x(1000);
-    p3->set_future_y(2700);
-    p3->set_future_theta(30);
-    p3->set_id(2);
+    for(int i=1; i<3; i++) {
+		AIToGUI::Point *p = p2->add_path();
+		p->set_x(100+i*140);
+		p->set_y(800-i*70);
+	}
 
     AIToGUI::Robot *p4 = aitogui->add_yellow_robots();
     p4->set_current_x(6000);
@@ -54,7 +57,13 @@ void makeAIToGUI(RoboPET_WrapperPacket &packet) {
     p4->set_future_x(6000);
     p4->set_future_y(2700);
     p4->set_future_theta(30);
-    p4->set_id(4);
+    p4->set_id(3);
+    
+    for(int i=1; i<7; i++) {
+		AIToGUI::Point *p = p4->add_path();
+		p->set_x(6000-i*100);
+		p->set_y(2700);
+	}
 
 }
 
@@ -240,10 +249,10 @@ void sslServer(int port=8100, char* hostname=(char*)"localhost")
 
 	while(true) {
 
-			for (int i=0; ; ++i)
+			/*for (int i=0; ; ++i)
 			{
 				usleep(500);
-				AIToGUI::Ball *b = packet.mutable_aitogui()->mutable_ball();
+				AIToGUI::Point *b = packet.mutable_aitogui()->mutable_ball();
 				b->set_x(i%5000 + 100);
 	 			b->set_y(i%5000 + 100);
 	 			printf("%i\n",i%5000 + 100);
@@ -251,13 +260,14 @@ void sslServer(int port=8100, char* hostname=(char*)"localhost")
 				//p1->set_current_x(i%5000);
 	 			//p1->set_current_y(i%5000);
 	 			//p1->set_current_theta(i%360);
-				server.send(packet);
-				simtotracker.send(packet);
-				aitotracker.send(packet);
-				radiototracker.send(packet);
-				aitogui.send(packet);
-				trackertoai.send(packet);
-			}
+			}*/
+			
+			server.send(packet);
+			simtotracker.send(packet);
+			aitotracker.send(packet);
+			radiototracker.send(packet);
+			aitogui.send(packet);
+			trackertoai.send(packet);			
 
 	}
 }
