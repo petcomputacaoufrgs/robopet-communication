@@ -1,6 +1,8 @@
 #ifndef ROBOPET_SERVER_H
 #define ROBOPET_SERVER_H
 
+#include "constants.h"
+
 enum {
 	PORT_AI_TO_GUI = 8100,
 	PORT_AI_TO_RADIO,
@@ -22,12 +24,6 @@ enum {
 #define IP_RADIO_TO_TRACKER "localhost"
 #define IP_SIM_TO_TRACKER "localhost"
 #define IP_TRACKER_TO_AI "localhost"
-
-enum {
-	TEAM_BLUE,
-	TEAM_YELLOW,
-	TEAM_TOTAL
-};
 
 // console graphics
 int gotoxy(int x, int y);

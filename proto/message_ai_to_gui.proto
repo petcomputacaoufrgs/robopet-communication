@@ -11,22 +11,21 @@ message AIToGUI {
 	}
 
     message Robot {
-	    required int32 current_x = 1;
-	    required int32 current_y = 2;
-	    required int32 current_theta = 3;
+	    required int32 id = 1;
 
-		// so we can know and visualize the AI's decisions
-	    required int32 future_x = 4;
-	    required int32 future_y = 5;
-	    required int32 future_theta = 6;
+	    required int32 current_x = 2;
+	    required int32 current_y = 3;
+	    required int32 current_theta = 4;
 
-	    required int32 id = 7;
-
-		repeated Point path = 8;
+		// variables to visualize AI's decisions
+	    required int32 future_x = 5;
+	    required int32 future_y = 6;
+	    required int32 future_theta = 7;
+   		repeated Point path = 8;
+	    optional string role = 9;
     }
 
 	repeated Robot blue_robots = 1;
 	repeated Robot yellow_robots = 2;
 	required Point ball = 3;
 }
-

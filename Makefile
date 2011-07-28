@@ -5,7 +5,8 @@ LFLAGS = -lprotobuf
 PACKETS_PATH = packets
 SOCKET_PATH = socket
 PROTO_PATH = proto
-INC_PATHS = -I$(PACKETS_PATH) -I$(SOCKET_PATH)
+ROBOPET_PATH = ../lib
+INC_PATHS = -I$(PACKETS_PATH) -I$(SOCKET_PATH) -I$(ROBOPET_PATH)
 
 OBJECTS = rp_server.o rp_client.o udp_netraw.o
 
