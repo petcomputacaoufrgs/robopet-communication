@@ -15,15 +15,15 @@ enum {
 	PORT_TRACKER_TO_AI
 };
 
-#define IP_AI_TO_GUI "localhost"
-#define IP_AI_TO_RADIO "localhost"
-#define IP_AI_TO_TRACKER "localhost"
-#define IP_GUI_TO_AI "localhost"
-#define IP_JOY_TO_RADIO "localhost"
-#define IP_RADIO_TO_SIM "localhost"
-#define IP_RADIO_TO_TRACKER "localhost"
-#define IP_SIM_TO_TRACKER "localhost"
-#define IP_TRACKER_TO_AI "localhost"
+#define IP_AI_TO_GUI "127.0.0.1"
+#define IP_AI_TO_RADIO "127.0.0.1"
+#define IP_AI_TO_TRACKER "127.0.0.1"
+#define IP_GUI_TO_AI "127.0.0.1"
+#define IP_JOY_TO_RADIO "127.0.0.1"
+#define IP_RADIO_TO_SIM "127.0.0.1"
+#define IP_RADIO_TO_TRACKER "127.0.0.1"
+#define IP_SIM_TO_TRACKER "127.0.0.1"
+#define IP_TRACKER_TO_AI "127.0.0.1"
 
 // console graphics
 int gotoxy(int x, int y);
