@@ -22,7 +22,7 @@ bool Address::setHost(const char *hostname,int port)
   addrinfo *res = NULL;
   getaddrinfo(hostname,NULL,NULL,&res);
   if(!res) return(false);
-
+	
   mzero(addr);
   addr_len = res->ai_addrlen;
   memcpy(&addr,res->ai_addr,addr_len);
